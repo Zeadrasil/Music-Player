@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -13,7 +14,7 @@ namespace Music_Player
         private string path;
         private string artist;
         private uint id;
-        public static uint count = 0;
+        private static uint count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();
         private static List<uint> openIds = new List<uint>();
         public Song(string name, string path, string artist, uint id)
@@ -51,5 +52,45 @@ namespace Music_Player
             }
             return null;
         }
+
+        public static uint getCount()
+        {
+            return count;
+        }
+        public uint getId()
+        {
+            return id;
+        }
+        public string getName()
+        {
+            return name;
+        }
+        public string getPath() 
+        { 
+            return path; 
+        }
+        public string getArtist()
+        {
+            return artist;
+        }
+        public void updateName()
+        {
+            string[] temp = new string[1];
+            temp[0] = name;
+            GetStringForm gsf = new GetStringForm("New name for " + name + ":", ref temp);
+            gsf.ShowDialog();
+            name = temp[0];
+        }
+        public void delete()
+        {
+            openIds.Append(id);
+            openIds.Sort();
+        }
+
+        public static List<uint> getOpenIds()
+        {
+            return new List<uint>(openIds.ToArray());
+        }
+
     }
 }
