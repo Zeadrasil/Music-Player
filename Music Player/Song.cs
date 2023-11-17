@@ -24,7 +24,7 @@ namespace Music_Player
             this.artist = artist;
             this.id = id;
         }
-        public static Song CreateSong()
+        public static Song? CreateSong()
         {
             openFileDialog.Filter = "Audio Files | *.mp3 | *.FLAC | *.AAC | *.WMA | *.AC3 | *.PCM | *.GSM | *.wav";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
