@@ -16,7 +16,7 @@ namespace Music_Player
         private int id;
         private static int count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();
-        private static List<int> openIds = new List<uint>();
+        private static List<int> openIds = new List<int>();
         public Song(string name, string path, string artist, int id)
         {
             this.name = name;
@@ -26,7 +26,7 @@ namespace Music_Player
         }
         public static Song? CreateSong()
         {
-            openFileDialog.Filter = "Audio Files | *.mp3 | *.FLAC | *.AAC | *.WMA | *.AC3 | *.PCM | *.GSM | *.wav";
+            openFileDialog.Filter = "Audio Files |*.mp3||*.FLAC||*.AAC||*.WMA||*.AC3||*.PCM||*.GSM||*.wav";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string[] name = new string[1];

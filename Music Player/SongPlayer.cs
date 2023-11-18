@@ -37,9 +37,9 @@ namespace Music_Player
             streamingSourceVoice.Start();
 
             //TODO: Rewrite so that song can be affected outside of this (different than main) thread
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
-
+            //Console.WriteLine("Press any key to exit.");
+            //Console.ReadKey();
+            Thread.Sleep(10000);
             StreamingSourceVoiceListener.Default.Remove(streamingSourceVoice);
             streamingSourceVoice.Stop();
             /* Thread.Sleep(1000);

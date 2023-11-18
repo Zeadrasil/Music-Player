@@ -8,9 +8,8 @@ namespace Music_Player
 {
     internal class MusicPlayer
     {
-        List<Song> songs;
-
-        MusicPlayer()
+        private List<Song> songs;
+        public MusicPlayer()
         {
             songs = new List<Song>();
         }
@@ -41,16 +40,11 @@ namespace Music_Player
                 return false;
             }
         }
-        public bool removeSong(uint index)
+        public bool removeSong(int index)
         {
             try
             {
-                int trueIndex = (int)index;
-                for(int i = 0; i < index && i < Song.getOpenIds().Count; i++)
-                {
-                    if (Song.getOpenIds()[i] > index) break;
-                    trueIndex--;
-                }
+                int trueIndex = getTrueIndex(index);
                 songs[trueIndex].delete();
                 songs.RemoveAt(trueIndex);
                 return true;
@@ -60,6 +54,22 @@ namespace Music_Player
                 MessageBox.Show("Error deleting song:\n" + ex.Message);
                 return false;
             }
+        }
+
+        public void playSong(int index)
+        {
+            SongPlayer.PlaySong(songs[getTrueIndex(index)]);
+        }
+
+        private int getTrueIndex(int index)
+        {
+            int trueIndex = index;
+            for (int i = 0; i < index && i < Song.getOpenIds().Count; i++)
+            {
+                if (Song.getOpenIds()[i] > index) break;
+                trueIndex--;
+            }
+            return trueIndex;
         }
     }
 }
