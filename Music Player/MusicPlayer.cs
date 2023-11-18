@@ -31,7 +31,7 @@ namespace Music_Player
                 }
                 else
                 {
-                    songs.Append(song);
+                    songs.Insert(song.getId(), song);
                     return true;
                 }
             }

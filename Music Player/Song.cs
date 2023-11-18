@@ -13,11 +13,11 @@ namespace Music_Player
         private string name;
         private string path;
         private string artist;
-        private uint id;
-        private static uint count = 0;
+        private int id;
+        private static int count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();
-        private static List<uint> openIds = new List<uint>();
-        public Song(string name, string path, string artist, uint id)
+        private static List<int> openIds = new List<uint>();
+        public Song(string name, string path, string artist, int id)
         {
             this.name = name;
             this.path = path;
@@ -38,7 +38,7 @@ namespace Music_Player
                 gsf.ShowDialog();
                 gsf = new GetStringForm("Please enter the artist name", ref artist);
                 gsf.ShowDialog();
-                uint id = count;
+                int id = count;
                 if(openIds.Count > 0) 
                 {
                     id = openIds[0];
@@ -53,11 +53,11 @@ namespace Music_Player
             return null;
         }
 
-        public static uint getCount()
+        public static int getCount()
         {
             return count;
         }
-        public uint getId()
+        public int getId()
         {
             return id;
         }
@@ -87,9 +87,9 @@ namespace Music_Player
             openIds.Sort();
         }
 
-        public static List<uint> getOpenIds()
+        public static List<int> getOpenIds()
         {
-            return new List<uint>(openIds.ToArray());
+            return new List<int>(openIds.ToArray());
         }
 
     }
