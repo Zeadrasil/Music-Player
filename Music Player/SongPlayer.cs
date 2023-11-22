@@ -1,62 +1,98 @@
 using CSCore;
 using CSCore.Codecs;
-using CSCore.XAudio2;
+using CSCore.SoundOut;
 
 namespace Music_Player
 {
     internal static class SongPlayer
     {
-        /// <summary>
-        /// If is null, no song is playing
-        /// </summary>
-        private static string? pathOfPlayingSong = null;
+        private readonly static ISoundOut soundOut = new WasapiOut() { Latency = 100 };
+
+        public static void StopSong()
+        {
+            soundOut.Stop();
+            soundOut.WaveSource.Dispose();
+        }
+
+        public static void PauseSong()
+        {
+            soundOut.Pause();
+        }
+
+        public static void ResumeSong()
+        {
+            soundOut.Resume();
+        }
 
         /// <summary>
-        /// isPaused is true if the SongPlayer would be able to resume from the last track played.
+        /// Seeks the currently playing song to the time provided. Throws error if no song is playing or if time is greater than playing song.
         /// </summary>
-        public static bool IsPaused { get; private set; } = true;
-        public static bool IsStopped { get; private set; } = true;
-        static readonly XAudio2 xaudio2 = XAudio2.CreateXAudio2();
-        static readonly XAudio2MasteringVoice masteringVoice = xaudio2.CreateMasteringVoice();
-        static StreamingSourceVoice? streamingSourceVoice;
+        /// <param name="time">The time to seek to</param>
+        /// <exception cref="NotPlayingAudio"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static void SeekToTime(TimeSpan time)
+        {
+            if (soundOut.PlaybackState == PlaybackState.Stopped)
+                throw new Exception("Tried to seek to time when music was stopped!");
+            if (soundOut.WaveSource.GetLength().CompareTo(time) < 0)
+                throw new ArgumentOutOfRangeException($"Time provided ({time}) is longer than the playing song ({soundOut.WaveSource.GetLength()})!");
 
+            soundOut.WaveSource.SetPosition(time);
+        }
+
+        /// <summary>
+        /// Seeks the currently playing song to the time provided. Throws error if no song is playing or if time is greater than playing song.
+        /// </summary>
+        /// <param name="time">The time to seek to</param>
+        /// <exception cref="NotPlayingAudio"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static void SeekToTimeSec(double seconds)
+        {
+            SeekToTime(TimeSpan.FromSeconds(seconds));
+        }
+
+        /// <summary>
+        /// Seeks the currently playing song to the time provided. Throws error if no song is playing or if time is greater than playing song.
+        /// </summary>
+        /// <param name="time">The time to seek to</param>
+        /// <exception cref="NotPlayingAudio"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static void SeekToTimeMS(int milliseconds)
+        {
+            SeekToTime(TimeSpan.FromMilliseconds(milliseconds));
+        }
+
+        /// <summary>
+        /// <paramref name="volume"/> must be greater than or equal to zero and less than or equal to 1.
+        /// </summary>
+        /// <param name="volume"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="volume">The volume to set</param>
         public static void SetVolume(float volume)
         {
-            masteringVoice.Volume = volume;
+            if (volume > 1.0f || volume < 0.0f)
+                throw new ArgumentOutOfRangeException("Volume must be greater than or equal to zero and less than or equal to 1! Was => " + volume);
+
+            soundOut.Volume = volume;
         }
 
-        private static void PlayThreadedSong(Song song)
-        {
-            //this code was copied then heavily modified from https://github.com/filoe/cscore/blob/master/Samples/XAudio2Playback/Program.cs 
-
-            //TODO: Add checks to see if song is already playing
-
-            using IWaveSource source = CodecFactory.Instance.GetCodec(song.getPath());
-            streamingSourceVoice = new StreamingSourceVoice(xaudio2, source);
-            StreamingSourceVoiceListener.Default.Add(streamingSourceVoice);
-            streamingSourceVoice.Start();
-
-            //TODO: Rewrite so that song can be affected outside of this (different than main) thread
-            //Console.WriteLine("Press any key to exit.");
-            //Console.ReadKey();
-            Thread.Sleep(10000);
-            StreamingSourceVoiceListener.Default.Remove(streamingSourceVoice);
-            streamingSourceVoice.Stop();
-            /* Thread.Sleep(1000);
-            StreamingSourceVoiceListener.Default.Add(streamingSourceVoice);
-            streamingSourceVoice.Start(); */
-        }
-
+        /// <summary>
+        /// Plays <paramref name="song"/>
+        /// </summary>
+        /// <exception cref="ArgumentNullException"></exception> 
+        /// <param name="song">The song to play</param>
         public static void PlaySong(Song song)
         {
             if (song is null)
                 throw new ArgumentNullException(nameof(song));
             else if (string.IsNullOrEmpty(song.getPath()))
-                throw new ArgumentNullException();
-            
-            pathOfPlayingSong = song.getPath();
-            //TODO: Add check to see if task already exists and handle it.
-            Task.Factory.StartNew(() => PlayThreadedSong(song));
+                throw new ArgumentNullException(song.ToString());
+            else if (soundOut.PlaybackState == PlaybackState.Playing || soundOut.PlaybackState == PlaybackState.Paused)
+                StopSong();
+
+            IWaveSource waveSource = CodecFactory.Instance.GetCodec(song.getPath()).ToSampleSource().ToStereo().ToWaveSource();
+            soundOut.Initialize(waveSource);
+            soundOut.Play();
         }
     }
 }
