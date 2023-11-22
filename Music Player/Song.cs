@@ -83,7 +83,7 @@ namespace Music_Player
         }
         public void delete()
         {
-            openIds.Append(id);
+            openIds.Add(id);
             openIds.Sort();
         }
 
@@ -95,6 +95,14 @@ namespace Music_Player
         {
             return name.Contains(searchParams) || artist.Contains(searchParams);
         }
+        public static void setCount(int newCount)
+        {
+            count = newCount;
+        }
 
+        public static void addUnusedId(int id)
+        {
+            openIds.Add(id);
+        }
     }
 }

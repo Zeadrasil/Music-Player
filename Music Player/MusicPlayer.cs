@@ -13,11 +13,46 @@ namespace Music_Player
         public MusicPlayer()
         {
             songs = new List<Song>();
+            searchedSongs = new List<Song>();
         }
 
-        public void load()
+        public bool load()
         {
-
+            try
+            {
+                List<Song> newSongs = new List<Song>();
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.Filter = "Text Files |*.txt";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    StreamReader sr = new StreamReader(openFile.FileName);
+                    Song.setCount(int.Parse(sr.ReadLine()));
+                    int lastId = -1;
+                    while(!sr.EndOfStream)
+                    {
+                        string path = sr.ReadLine();
+                        string name = sr.ReadLine();
+                        string artist = sr.ReadLine();
+                        int id = int.Parse(sr.ReadLine());
+                        newSongs.Add(new Song(name, path, artist, id));
+                        while(id - lastId > 1)
+                        {
+                            lastId++;
+                            Song.addUnusedId(lastId);
+                        }
+                        lastId++;
+                    }
+                    songs = newSongs;
+                    clearSearch();
+                    sr.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading song data: " + ex.Message);
+            }
+            return false;
         }
 
         public bool addSong()
@@ -47,6 +82,7 @@ namespace Music_Player
             {
                 int trueIndex = getTrueIndex(index);
                 songs[trueIndex].delete();
+                searchedSongs.Remove(songs[trueIndex]);
                 songs.RemoveAt(trueIndex);
                 return true;
             }
@@ -88,6 +124,43 @@ namespace Music_Player
         public void clearSearch()
         {
             searchedSongs = new List<Song>(songs.ToArray());
+        }
+
+        public bool save()
+        {
+            try
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "Text File |*.txt";
+                if(saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter sw = new StreamWriter(saveFile.FileName);
+                    sw.WriteLine(Song.getCount());
+                    foreach(Song song in songs)
+                    {
+                        sw.WriteLine(song.getPath());
+                        sw.WriteLine(song.getName());
+                        sw.WriteLine(song.getArtist());
+                        sw.WriteLine(song.getId());
+                    }
+                    sw.Close();
+                    return true;
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Error saving data: " + ex.Message);
+            }
+            return false;
+        }
+
+        public int getActiveSongCount()
+        {
+            return searchedSongs.Count;
+        }
+        public Song getSong(int index)
+        {
+            return searchedSongs[index];
         }
     }
 }
