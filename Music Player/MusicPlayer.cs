@@ -9,6 +9,7 @@ namespace Music_Player
     internal class MusicPlayer
     {
         private List<Song> songs;
+        private List<Song> searchedSongs;
         public MusicPlayer()
         {
             songs = new List<Song>();
@@ -70,6 +71,23 @@ namespace Music_Player
                 trueIndex--;
             }
             return trueIndex;
+        }
+
+        public void search(string term)
+        {
+            List<Song> newSongs = new List<Song>();
+            foreach(Song song in searchedSongs)
+            {
+                if(song.fitsSearchParams(term))
+                {
+                    newSongs.Add(song);
+                }
+            }
+            searchedSongs = newSongs;
+        }
+        public void clearSearch()
+        {
+            searchedSongs = new List<Song>(songs.ToArray());
         }
     }
 }

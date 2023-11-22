@@ -91,6 +91,10 @@ namespace Music_Player
         {
             return new List<int>(openIds.ToArray());
         }
+        public bool fitsSearchParams(string searchParams)
+        {
+            return name.Contains(searchParams) || artist.Contains(searchParams);
+        }
 
     }
 }
