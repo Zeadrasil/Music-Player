@@ -34,5 +34,13 @@ namespace Music_Player
             result[0] = textBox.Text;
             this.Close();
         }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                confirmButton_Click(sender, e);
+            }
+        }
     }
 }
