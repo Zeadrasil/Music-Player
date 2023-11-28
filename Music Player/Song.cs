@@ -17,12 +17,14 @@ namespace Music_Player
         private static int count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();
         private static List<int> openIds = new List<int>();
+        private List<Playlist> playlists;
         public Song(string name, string path, string artist, int id)
         {
             this.name = name;
             this.path = path;
             this.artist = artist;
             this.id = id;
+            playlists = new List<Playlist>();
         }
         public static Song? CreateSong()
         {
@@ -85,6 +87,10 @@ namespace Music_Player
         {
             openIds.Add(id);
             openIds.Sort();
+            while(playlists.Count > 0) 
+            {
+                
+            }
         }
 
         public static List<int> getOpenIds()
@@ -93,7 +99,7 @@ namespace Music_Player
         }
         public bool fitsSearchParams(string searchParams)
         {
-            return name.Contains(searchParams) || artist.Contains(searchParams);
+            return name.ToLower().Contains(searchParams.ToLower()) || artist.ToLower().Contains(searchParams.ToLower());
         }
         public static void setCount(int newCount)
         {
@@ -103,6 +109,24 @@ namespace Music_Player
         public static void addUnusedId(int id)
         {
             openIds.Add(id);
+        }
+        public bool addPlaylist(Playlist playList)
+        {
+            if(playlists.Contains(playList))
+            {
+                return false;
+            }
+            playlists.Add(playList);
+            return true;
+        }
+        public bool removePlaylist(Playlist playList)
+        {
+            if(playlists.Contains(playList))
+            {
+                playlists.Remove(playList);
+                return true;
+            }
+            return false;
         }
     }
 }

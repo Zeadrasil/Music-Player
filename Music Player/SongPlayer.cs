@@ -23,7 +23,6 @@ namespace Music_Player
         {
             soundOut.Resume();
         }
-
         /// <summary>
         /// Seeks the currently playing song to the time provided. Throws error if no song is playing or if time is greater than playing song.
         /// </summary>
@@ -89,10 +88,14 @@ namespace Music_Player
                 throw new ArgumentNullException(song.ToString());
             else if (soundOut.PlaybackState == PlaybackState.Playing || soundOut.PlaybackState == PlaybackState.Paused)
                 StopSong();
-
             IWaveSource waveSource = CodecFactory.Instance.GetCodec(song.getPath()).ToSampleSource().ToStereo().ToWaveSource();
             soundOut.Initialize(waveSource);
             soundOut.Play();
+        }
+
+        public static PlaybackState GetPlaybackState()
+        {
+            return soundOut.PlaybackState;
         }
     }
 }

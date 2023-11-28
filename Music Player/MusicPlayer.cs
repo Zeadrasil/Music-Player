@@ -101,9 +101,8 @@ namespace Music_Player
         private int getTrueIndex(int index)
         {
             int trueIndex = index;
-            for (int i = 0; i < index && i < Song.getOpenIds().Count; i++)
+            for (int i = 0; i < index && i < Song.getOpenIds().Count && Song.getOpenIds()[i] < index; i++)
             {
-                if (Song.getOpenIds()[i] > index) break;
                 trueIndex--;
             }
             return trueIndex;
