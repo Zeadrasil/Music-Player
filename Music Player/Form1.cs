@@ -76,7 +76,7 @@ namespace Music_Player
             for(int index = 0; index < player.getActiveSongCount(); index++)
             {
                 Song song = player.getSong(index);
-                listBox1.Items.Add(song.getName() + "  |  " + song.getArtist());
+                listBox1.Items.Add(song.getTitle() + "  |  " + song.getArtist());
             }
         }
     }

@@ -5,22 +5,26 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using TagLib;
+using TagLib.Flac;
 
 namespace Music_Player
 {
     internal class Song
     {
-        private string name;
+        private string? title;
         private string path;
-        private string artist;
+        private string? artist;
+        private Image? coverArt;
         private int id;
         private static int count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();
         private static List<int> openIds = new List<int>();
         private List<Playlist> playlists;
-        public Song(string name, string path, string artist, int id)
+        public Song(string path, int id) : this(null!, path, null!, id) { }
+        public Song(string title, string path, string artist, int id)
         {
-            this.name = name;
+            this.title = title;
             this.path = path;
             this.artist = artist;
             this.id = id;
@@ -41,7 +45,7 @@ namespace Music_Player
                 gsf = new GetStringForm("Please enter the artist name", ref artist);
                 gsf.ShowDialog();
                 int id = count;
-                if(openIds.Count > 0) 
+                if (openIds.Count > 0)
                 {
                     id = openIds[0];
                     openIds.RemoveAt(0);
@@ -63,33 +67,64 @@ namespace Music_Player
         {
             return id;
         }
-        public string getName()
+        public string getTitle()
         {
-            return name;
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                title = TagLib.File.Create(path).Tag.Title;
+                if (string.IsNullOrWhiteSpace(title))
+                    throw new Exception($"\"{path}\" does not have a valid title!");
+                return title;
+            }
+            return title;
         }
-        public string getPath() 
-        { 
-            return path; 
+        public string getPath()
+        {
+            return path;
         }
         public string getArtist()
         {
+            if (string.IsNullOrWhiteSpace(artist))
+            {
+                artist = TagLib.File.Create(path).Tag.FirstAlbumArtist;
+                if (string.IsNullOrWhiteSpace(title))
+                    throw new Exception($"\"{path}\" does not have a valid artist!");
+                return artist;
+            }
             return artist;
         }
-        public void updateName()
+
+        [Obsolete("Please do not use it does not work")]
+        public Image getCoverArt()
+        {
+            if (coverArt == null)
+            {
+                TagLib.IPicture p = TagLib.File.Create(path).Tag.Pictures[0];
+                TagLib.Picture pic = new TagLib.Picture(p);
+
+                if (coverArt == null)
+                    throw new Exception("coverArt is null");
+
+                return coverArt;
+            }
+            return coverArt;
+        }
+
+        /* public void updateName()
         {
             string[] temp = new string[1];
             temp[0] = name;
             GetStringForm gsf = new GetStringForm("New name for " + name + ":", ref temp);
             gsf.ShowDialog();
             name = temp[0];
-        }
+        } */
         public void delete()
         {
             openIds.Add(id);
             openIds.Sort();
-            while(playlists.Count > 0) 
+            while (playlists.Count > 0)
             {
-                
+
             }
         }
 
@@ -99,7 +134,7 @@ namespace Music_Player
         }
         public bool fitsSearchParams(string searchParams)
         {
-            return name.ToLower().Contains(searchParams.ToLower()) || artist.ToLower().Contains(searchParams.ToLower());
+            return getTitle().ToLower().Contains(searchParams.ToLower()) || getArtist().ToLower().Contains(searchParams.ToLower());
         }
         public static void setCount(int newCount)
         {
@@ -112,7 +147,7 @@ namespace Music_Player
         }
         public bool addPlaylist(Playlist playList)
         {
-            if(playlists.Contains(playList))
+            if (playlists.Contains(playList))
             {
                 return false;
             }
@@ -121,7 +156,7 @@ namespace Music_Player
         }
         public bool removePlaylist(Playlist playList)
         {
-            if(playlists.Contains(playList))
+            if (playlists.Contains(playList))
             {
                 playlists.Remove(playList);
                 return true;
