@@ -59,8 +59,8 @@ namespace Music_Player
         {
             try
             {
-                Song song = Song.CreateSong();
-                if (song.Equals(null))
+                Song song = Song.CreateSong()!;
+                if (song == null)
                 {
                     return false;
                 }
@@ -138,7 +138,7 @@ namespace Music_Player
                     foreach(Song song in songs)
                     {
                         sw.WriteLine(song.getPath());
-                        sw.WriteLine(song.getName());
+                        sw.WriteLine(song.getTitle());
                         sw.WriteLine(song.getArtist());
                         sw.WriteLine(song.getId());
                     }
