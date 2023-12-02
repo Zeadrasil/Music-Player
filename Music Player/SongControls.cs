@@ -45,5 +45,25 @@ namespace Music_Player
         {
             changeForms(new SearchSongs());
         }
+
+        private void previousSongPicBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pauseSongPicBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void playSongPicBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nextSongPicBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

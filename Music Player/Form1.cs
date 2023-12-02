@@ -73,11 +73,40 @@ namespace Music_Player
         private void updateOptions()
         {
             listBox1.Items.Clear();
-            for(int index = 0; index < player.getActiveSongCount(); index++)
+            for (int index = 0; index < player.getActiveSongCount(); index++)
             {
                 Song song = player.getSong(index);
                 listBox1.Items.Add(song.getName() + "  |  " + song.getArtist());
             }
+        }
+        private void changeForms(Form frm)
+        {
+            frm.Location = this.Location;
+            frm.StartPosition = FormStartPosition.Manual;
+            //frm.FormClosing += delegate { this.Show(); };
+            frm.FormClosing += delegate { this.Close(); };
+            frm.Show();
+            this.Hide();
+        }
+
+        private void SearchHomeButton_Click(object sender, EventArgs e)
+        {
+            changeForms(new HomePage());
+        }
+
+        private void SearchPlaylistButton_Click(object sender, EventArgs e)
+        {
+            changeForms(new PlaylistPage());
+        }
+
+        private void SearchAddSongButton_Click(object sender, EventArgs e)
+        {
+            changeForms(new SearchSongs());
+        }
+
+        private void SearchControlSongButton_Click(object sender, EventArgs e)
+        {
+            changeForms(new SongControls());
         }
     }
 }

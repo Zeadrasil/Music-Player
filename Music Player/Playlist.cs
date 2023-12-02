@@ -74,7 +74,7 @@ namespace Music_Player
                 }
                 songs.Add(song);
                 songOrder.Add(songOrder.Count);
-                song.addPlaylist(id);
+                song.addPlaylist(this);
                 return true;
             }
             return false;
@@ -120,7 +120,7 @@ namespace Music_Player
         {
             foreach(Song song in songs)
             {
-                song.removePlaylist(id);
+                song.removePlaylist(this);
             }
             openIds.Add(id);
         }
