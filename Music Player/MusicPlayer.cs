@@ -10,10 +10,12 @@ namespace Music_Player
     {
         private List<Song> songs;
         private List<Song> searchedSongs;
+        private List<Playlist> playlists;
         public MusicPlayer()
         {
             songs = new List<Song>();
             searchedSongs = new List<Song>();
+            playlists = new List<Playlist>();
         }
 
         public bool load()
@@ -28,19 +30,36 @@ namespace Music_Player
                     StreamReader sr = new StreamReader(openFile.FileName);
                     Song.setCount(int.Parse(sr.ReadLine()));
                     int lastId = -1;
-                    while(!sr.EndOfStream)
+                    string holder = sr.ReadLine();
+                    while(holder != "??PLAYLISTS??" && !sr.EndOfStream)
                     {
-                        string path = sr.ReadLine();
                         string name = sr.ReadLine();
                         string artist = sr.ReadLine();
                         int id = int.Parse(sr.ReadLine());
-                        newSongs.Add(new Song(name, path, artist, id));
+                        newSongs.Add(new Song(name, holder, artist, id));
                         while(id - lastId > 1)
                         {
                             lastId++;
                             Song.addUnusedId(lastId);
                         }
                         lastId++;
+                        holder = sr.ReadLine();
+                    }
+                    if(!sr.EndOfStream)
+                    {
+                        Playlist.setCount(int.Parse(sr.ReadLine()));
+                        lastId = -1;
+                        while(!sr.EndOfStream)
+                        {
+                            string name = sr.ReadLine();
+                            int id = int.Parse(sr.ReadLine());
+                            Playlist playlist = new Playlist(name, id);
+                            int count = int.Parse(sr.ReadLine());
+                            for(int i = 0; i < count; i++)
+                            {
+                                playlist.addSong(getSong(getTrueIndex(int.Parse(sr.ReadLine()))));
+                            }
+                        }
                     }
                     songs = newSongs;
                     clearSearch();
@@ -59,8 +78,8 @@ namespace Music_Player
         {
             try
             {
-                Song song = Song.CreateSong();
-                if (song.Equals(null))
+                Song song = Song.CreateSong()!;
+                if (song == null)
                 {
                     return false;
                 }
@@ -93,7 +112,7 @@ namespace Music_Player
             }
         }
 
-        public void playSong(int index)
+        public void play(int index)
         {
             SongPlayer.PlaySong(songs[getTrueIndex(index)]);
         }
@@ -138,9 +157,20 @@ namespace Music_Player
                     foreach(Song song in songs)
                     {
                         sw.WriteLine(song.getPath());
-                        sw.WriteLine(song.getName());
+                        sw.WriteLine(song.getTitle());
                         sw.WriteLine(song.getArtist());
                         sw.WriteLine(song.getId());
+                    }
+                    sw.WriteLine("??PLAYLISTS??");
+                    foreach(Playlist playlist in playlists)
+                    {
+                        sw.WriteLine(playlist.getName());
+                        sw.WriteLine(playlist.getId());
+                        sw.WriteLine(playlist.getLength());
+                        foreach(Song song in playlist.getSongs())
+                        {
+                            sw.WriteLine(song.getId());
+                        }
                     }
                     sw.Close();
                     return true;
@@ -160,6 +190,44 @@ namespace Music_Player
         public Song getSong(int index)
         {
             return searchedSongs[index];
+        }
+
+        public void play(int playlistIndex, int startIndex)
+        {
+            playlists[playlistIndex].play(startIndex);
+        }
+        public Song getSong(int playlistIndex, int songIndex)
+        {
+            return playlists[playlistIndex].getSong(songIndex);
+        }
+        public bool addPlaylist()
+        {
+            Playlist? playlist = Playlist.createPlaylist();
+            if(playlist != null)
+            {
+                playlists.Insert(playlist.getId(), playlist);
+                return true;
+            }
+            return false;
+        }
+        public bool removePlaylist(int index)
+        {
+            try
+            {
+                playlists[index].delete();
+                playlists.RemoveAt(index);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error Deleting Playlist: " + ex.Message);
+                return false;
+            }
+        }
+
+        public Playlist getPlaylist(int index)
+        {
+            return playlists[index];
         }
     }
 }

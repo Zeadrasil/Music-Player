@@ -133,5 +133,21 @@ namespace Music_Player
         {
             return songs[index];
         }
+        public int getId()
+        {
+            return id;
+        }
+        public string getName()
+        {
+            return name;
+        }
+        public static void setCount(int count)
+        {
+            Playlist.count = count;
+        }
+        public int getLength()
+        {
+            return songs.Count;
+        }
     }
 }
