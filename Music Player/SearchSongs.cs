@@ -12,9 +12,11 @@ namespace Music_Player
 {
     public partial class SearchSongs : Form
     {
-        public SearchSongs()
+        MusicPlayer player;
+        public SearchSongs(ref MusicPlayer player)
         {
             InitializeComponent();
+            this.player = player;
         }
         private void changeForms(Form frm)
         {
@@ -28,12 +30,12 @@ namespace Music_Player
 
         private void SearchHomeButton_Click(object sender, EventArgs e)
         {
-            changeForms(new HomePage());
+            changeForms(new HomePage(ref player));
         }
 
         private void SearchPlaylistButton_Click(object sender, EventArgs e)
         {
-            changeForms(new PlaylistPage());
+            changeForms(new PlaylistPage(ref player));
         }
 
         private void SearchAddSongButton_Click(object sender, EventArgs e)
@@ -43,7 +45,11 @@ namespace Music_Player
 
         private void SearchControlSongButton_Click(object sender, EventArgs e)
         {
-            changeForms(new SongControls());
+            if (player.getActiveSongCount() > 0)
+            {
+                var frm = new SongControls(player.getSong(new Random().Next(player.getActiveSongCount())), ref player);
+                changeForms(frm);
+            }
         }
     }
 }

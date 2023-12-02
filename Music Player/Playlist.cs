@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Player
 {
-    internal class Playlist
+    public partial class Playlist
     {
         private List<Song> songs;
         private List<int> songOrder;

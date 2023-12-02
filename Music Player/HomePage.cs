@@ -13,9 +13,16 @@ namespace Music_Player
 {
     public partial class HomePage : Form
     {
+        MusicPlayer player;
         public HomePage()
         {
             InitializeComponent();
+            player = new MusicPlayer();
+        }
+        public HomePage(ref MusicPlayer player)
+        {
+            InitializeComponent();
+            this.player = player;
         }
 
         private void changeForms(Form frm)
@@ -30,7 +37,7 @@ namespace Music_Player
 
         private void HomePlaylistButton_Click(object sender, EventArgs e)
         {
-            var frm = new PlaylistPage();
+            var frm = new PlaylistPage(ref player);
             changeForms(frm);
         }
 
@@ -42,13 +49,16 @@ namespace Music_Player
 
         private void HomeControlSongButton_Click(object sender, EventArgs e)
         {
-            var frm = new SongControls();
-            changeForms(frm);
+            if (player.getActiveSongCount() > 0)
+            {
+                var frm = new SongControls(player.getSong(new Random().Next(player.getActiveSongCount())), ref player);
+                changeForms(frm);
+            }
         }
 
         private void HomeFindSongButton_Click(object sender, EventArgs e)
         {
-            var frm = new SearchSongs();
+            var frm = new SearchSongs(ref player);
             changeForms(frm);
         }
     }

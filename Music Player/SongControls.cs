@@ -12,9 +12,48 @@ namespace Music_Player
 {
     public partial class SongControls : Form
     {
-        public SongControls()
+        private int playlistIndex = -1;
+        private Song song;
+        private Playlist? playlist;
+        MusicPlayer player;
+        public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
+            this.song = song;
+            onCreate();
+            this.player = player;
+        }
+        public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
+        {
+            InitializeComponent();
+            song = playlist.getSong(playlistIndex);
+            this.playlistIndex = playlistIndex;
+            this.playlist = playlist;
+            this.player = player;
+            onCreate();
+        }
+        private void onCreate()
+        {
+            if(playlistIndex == -1)
+            {
+                nextSongPicBox.Hide();
+                nextSongPicBox.Enabled = false;
+                previousSongPicBox.Hide();
+                previousSongPicBox.Enabled = false;
+            }
+            else
+            {
+                if(playlistIndex == 0)
+                {
+                    previousSongPicBox.Hide();
+                    previousSongPicBox.Enabled = false;
+                }
+                else if(playlistIndex == playlist.getLength())
+                { 
+                    nextSongPicBox.Hide();
+                    nextSongPicBox.Enabled = false;
+                }
+            }
         }
         private void changeForms(Form frm)
         {
@@ -28,12 +67,12 @@ namespace Music_Player
 
         private void ControllerHomeButton_Click(object sender, EventArgs e)
         {
-            changeForms(new HomePage());
+            changeForms(new HomePage(ref player));
         }
 
         private void ControllerPlaylistButton_Click(object sender, EventArgs e)
         {
-            changeForms(new PlaylistPage());
+            changeForms(new PlaylistPage(ref player));
         }
 
         private void ControllerAddSongButton_Click(object sender, EventArgs e)
@@ -43,17 +82,17 @@ namespace Music_Player
 
         private void ControllerFindSongButton_Click(object sender, EventArgs e)
         {
-            changeForms(new SearchSongs());
+            changeForms(new SearchSongs(ref player));
         }
 
         private void previousSongPicBox_Click(object sender, EventArgs e)
         {
-
+            changeForms(new SongControls(playlist, playlistIndex - 1, ref player));
         }
 
         private void pauseSongPicBox_Click(object sender, EventArgs e)
         {
-
+            changeForms(new SongControls(playlist, playlistIndex + 1, ref player));
         }
 
         private void playSongPicBox_Click(object sender, EventArgs e)

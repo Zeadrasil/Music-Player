@@ -10,7 +10,7 @@ using TagLib.Flac;
 
 namespace Music_Player
 {
-    internal class Song
+    public partial class Song
     {
         private string? title;
         private string path;

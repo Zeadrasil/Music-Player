@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Music_Player
 {
-    internal class MusicPlayer
+    public partial class MusicPlayer
     {
         private List<Song> songs;
         private List<Song> searchedSongs;

@@ -56,7 +56,7 @@ namespace Music_Player
 
         private void button5_Click(object sender, EventArgs e)
         {
-            player.playSong(player.getSong(listBox1.SelectedIndex).getId());
+            player.play(player.getSong(listBox1.SelectedIndex).getId());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -91,22 +91,22 @@ namespace Music_Player
 
         private void SearchHomeButton_Click(object sender, EventArgs e)
         {
-            changeForms(new HomePage());
+            changeForms(new HomePage(ref player));
         }
 
         private void SearchPlaylistButton_Click(object sender, EventArgs e)
         {
-            changeForms(new PlaylistPage());
+            changeForms(new PlaylistPage(ref player));
         }
 
         private void SearchAddSongButton_Click(object sender, EventArgs e)
         {
-            changeForms(new SearchSongs());
+            changeForms(new SearchSongs(ref player));
         }
 
         private void SearchControlSongButton_Click(object sender, EventArgs e)
         {
-            changeForms(new SongControls());
+            changeForms(new SongControls(player.getSong(listBox1.SelectedIndex), ref player));
         }
     }
 }
