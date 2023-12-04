@@ -12,6 +12,7 @@ namespace Music_Player
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new HomePage());
+            SongPlayer.CloseApp();
         }
     }
 }
