@@ -59,6 +59,7 @@ namespace Music_Player
                 song = playlist.getSong(playlistIndex);
             }
             SongPlayer.StopSong();
+            playSongPicBox_Click(null, null);
         }
         private void changeForms(Form frm)
         {
