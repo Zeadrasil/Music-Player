@@ -11,7 +11,7 @@ namespace Music_Player
         public static void StopSong()
         {
             soundOut.Stop();
-            soundOut.WaveSource.Dispose();
+            soundOut.WaveSource?.Dispose();
         }
 
         public static void CloseApp()
