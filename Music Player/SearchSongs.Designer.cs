@@ -28,45 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SearchControlSongButton = new Button();
-            SearchHomeButton = new Button();
-            SearchAddSongButton = new Button();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchSongs));
             SearchPlaylistButton = new Button();
+            searchParameters = new TextBox();
+            returnedSongs = new ListBox();
+            pictureBox1 = new PictureBox();
+            imageList1 = new ImageList(components);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // SearchControlSongButton
-            // 
-            SearchControlSongButton.Location = new Point(522, 404);
-            SearchControlSongButton.Name = "SearchControlSongButton";
-            SearchControlSongButton.Size = new Size(120, 34);
-            SearchControlSongButton.TabIndex = 12;
-            SearchControlSongButton.Text = "controlSongs";
-            SearchControlSongButton.UseVisualStyleBackColor = true;
-            SearchControlSongButton.Click += SearchControlSongButton_Click;
-            // 
-            // SearchHomeButton
-            // 
-            SearchHomeButton.Location = new Point(162, 404);
-            SearchHomeButton.Name = "SearchHomeButton";
-            SearchHomeButton.Size = new Size(118, 34);
-            SearchHomeButton.TabIndex = 11;
-            SearchHomeButton.Text = "home";
-            SearchHomeButton.UseVisualStyleBackColor = true;
-            SearchHomeButton.Click += SearchHomeButton_Click;
-            // 
-            // SearchAddSongButton
-            // 
-            SearchAddSongButton.Location = new Point(404, 404);
-            SearchAddSongButton.Name = "SearchAddSongButton";
-            SearchAddSongButton.Size = new Size(112, 34);
-            SearchAddSongButton.TabIndex = 10;
-            SearchAddSongButton.Text = "addsong";
-            SearchAddSongButton.UseVisualStyleBackColor = true;
-            SearchAddSongButton.Click += SearchAddSongButton_Click;
             // 
             // SearchPlaylistButton
             // 
-            SearchPlaylistButton.Location = new Point(286, 404);
+            SearchPlaylistButton.Location = new Point(346, 404);
             SearchPlaylistButton.Name = "SearchPlaylistButton";
             SearchPlaylistButton.Size = new Size(112, 34);
             SearchPlaylistButton.TabIndex = 9;
@@ -74,25 +48,60 @@
             SearchPlaylistButton.UseVisualStyleBackColor = true;
             SearchPlaylistButton.Click += SearchPlaylistButton_Click;
             // 
+            // searchParameters
+            // 
+            searchParameters.Location = new Point(107, 60);
+            searchParameters.Name = "searchParameters";
+            searchParameters.Size = new Size(610, 31);
+            searchParameters.TabIndex = 13;
+            // 
+            // returnedSongs
+            // 
+            returnedSongs.FormattingEnabled = true;
+            returnedSongs.ItemHeight = 25;
+            returnedSongs.Location = new Point(107, 110);
+            returnedSongs.Name = "returnedSongs";
+            returnedSongs.Size = new Size(610, 154);
+            returnedSongs.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(369, 270);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(61, 58);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "play.png");
+            // 
             // SearchSongs
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(SearchControlSongButton);
-            Controls.Add(SearchHomeButton);
-            Controls.Add(SearchAddSongButton);
+            Controls.Add(pictureBox1);
+            Controls.Add(returnedSongs);
+            Controls.Add(searchParameters);
             Controls.Add(SearchPlaylistButton);
             Name = "SearchSongs";
-            Text = "SearchSongs";
+            Text = "lkm";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button SearchControlSongButton;
-        private Button SearchHomeButton;
-        private Button SearchAddSongButton;
         private Button SearchPlaylistButton;
+        private TextBox searchParameters;
+        private ListBox returnedSongs;
+        private PictureBox pictureBox1;
+        private ImageList imageList1;
     }
 }

@@ -30,15 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             HomePlaylistButton = new Button();
-            HomeAddSongButton = new Button();
-            HomeControlSongButton = new Button();
             HomeFindSongButton = new Button();
             imageList1 = new ImageList(components);
+            button3 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // HomePlaylistButton
             // 
-            HomePlaylistButton.Location = new Point(160, 404);
+            HomePlaylistButton.Location = new Point(16, 109);
             HomePlaylistButton.Name = "HomePlaylistButton";
             HomePlaylistButton.Size = new Size(112, 34);
             HomePlaylistButton.TabIndex = 1;
@@ -46,29 +46,9 @@
             HomePlaylistButton.UseVisualStyleBackColor = true;
             HomePlaylistButton.Click += HomePlaylistButton_Click;
             // 
-            // HomeAddSongButton
-            // 
-            HomeAddSongButton.Location = new Point(278, 404);
-            HomeAddSongButton.Name = "HomeAddSongButton";
-            HomeAddSongButton.Size = new Size(112, 34);
-            HomeAddSongButton.TabIndex = 2;
-            HomeAddSongButton.Text = "addsong";
-            HomeAddSongButton.UseVisualStyleBackColor = true;
-            HomeAddSongButton.Click += HomeAddSongButton_Click;
-            // 
-            // HomeControlSongButton
-            // 
-            HomeControlSongButton.Location = new Point(396, 404);
-            HomeControlSongButton.Name = "HomeControlSongButton";
-            HomeControlSongButton.Size = new Size(118, 34);
-            HomeControlSongButton.TabIndex = 3;
-            HomeControlSongButton.Text = "controlSong";
-            HomeControlSongButton.UseVisualStyleBackColor = true;
-            HomeControlSongButton.Click += HomeControlSongButton_Click;
-            // 
             // HomeFindSongButton
             // 
-            HomeFindSongButton.Location = new Point(520, 404);
+            HomeFindSongButton.Location = new Point(169, 109);
             HomeFindSongButton.Name = "HomeFindSongButton";
             HomeFindSongButton.Size = new Size(112, 34);
             HomeFindSongButton.TabIndex = 4;
@@ -82,14 +62,32 @@
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
+            // button3
+            // 
+            button3.Location = new Point(169, 12);
+            button3.Name = "button3";
+            button3.Size = new Size(112, 34);
+            button3.TabIndex = 13;
+            button3.Text = "Load";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(16, 12);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 12;
+            button2.Text = "Save";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(307, 182);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(HomeFindSongButton);
-            Controls.Add(HomeControlSongButton);
-            Controls.Add(HomeAddSongButton);
             Controls.Add(HomePlaylistButton);
             Name = "HomePage";
             Text = "HomePage";
@@ -98,9 +96,9 @@
 
         #endregion
         private Button HomePlaylistButton;
-        private Button HomeAddSongButton;
-        private Button HomeControlSongButton;
         private Button HomeFindSongButton;
         private ImageList imageList1;
+        private Button button3;
+        private Button button2;
     }
 }

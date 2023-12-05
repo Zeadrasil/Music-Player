@@ -119,9 +119,9 @@ namespace Music_Player
             {
                 Thread.Sleep(100);
             }
-            if(SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
+            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
             {
-                if(looping)
+                if (looping)
                 {
                     playSongPicBox_Click(sender, e);
                 }
@@ -134,7 +134,7 @@ namespace Music_Player
 
         private void nextSongPicBox_Click(object sender, EventArgs e)
         {
-            if(playlistLooping && playlistIndex == playlist.getLength())
+            if (playlistLooping && playlistIndex == playlist.getLength())
             {
                 playlistIndex = -1;
             }
