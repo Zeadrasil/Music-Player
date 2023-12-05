@@ -16,6 +16,8 @@ namespace Music_Player
         private Song song;
         private Playlist? playlist;
         MusicPlayer player;
+        bool looping = false; //Placeholder, there should be a control for this
+        bool playlistLooping = false; //Placeholder, there should be a control for this
         public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
@@ -23,18 +25,19 @@ namespace Music_Player
             onCreate();
             this.player = player;
         }
-        public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
+        public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player, bool playlistLooping = false)
         {
             InitializeComponent();
             song = playlist.getSong(playlistIndex);
             this.playlistIndex = playlistIndex;
             this.playlist = playlist;
             this.player = player;
+            this.playlistLooping = playlistLooping;
             onCreate();
         }
         private void onCreate()
         {
-            if(playlistIndex == -1)
+            if (playlistIndex == -1)
             {
                 nextSongPicBox.Hide();
                 nextSongPicBox.Enabled = false;
@@ -43,17 +46,19 @@ namespace Music_Player
             }
             else
             {
-                if(playlistIndex == 0)
+                if (playlistIndex == 0)
                 {
                     previousSongPicBox.Hide();
                     previousSongPicBox.Enabled = false;
                 }
-                else if(playlistIndex == playlist.getLength())
-                { 
+                else if (playlistIndex == playlist.getLength())
+                {
                     nextSongPicBox.Hide();
                     nextSongPicBox.Enabled = false;
                 }
+                song = playlist.getSong(playlistIndex);
             }
+            SongPlayer.StopSong();
         }
         private void changeForms(Form frm)
         {
@@ -92,17 +97,48 @@ namespace Music_Player
 
         private void pauseSongPicBox_Click(object sender, EventArgs e)
         {
-            changeForms(new SongControls(playlist, playlistIndex + 1, ref player));
         }
 
         private void playSongPicBox_Click(object sender, EventArgs e)
         {
-
+            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
+            {
+                SongPlayer.PauseSong();
+                playSongPicBox.Image = imageList1.Images[0];
+            }
+            else if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Paused)
+            {
+                SongPlayer.ResumeSong();
+                playSongPicBox.Image = imageList1.Images[0];
+            }
+            else
+            {
+                SongPlayer.PlaySong(song);
+            }
+            while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
+            {
+                Thread.Sleep(100);
+            }
+            if(SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
+            {
+                if(looping)
+                {
+                    playSongPicBox_Click(sender, e);
+                }
+                else if (playlist != null && playlistIndex < playlist.getLength())
+                {
+                    nextSongPicBox_Click(sender, e);
+                }
+            }
         }
 
         private void nextSongPicBox_Click(object sender, EventArgs e)
         {
-
+            if(playlistLooping && playlistIndex == playlist.getLength())
+            {
+                playlistIndex = -1;
+            }
+            changeForms(new SongControls(playlist, playlistIndex + 1, ref player));
         }
     }
 }
