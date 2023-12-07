@@ -69,6 +69,7 @@ namespace Music_Player
             outPlaylist.Clear();
             if (playlistPicker.SelectedIndex != -1)
             {
+                player.getPlaylist(playlistPicker.SelectedIndex).unShuffle();
                 for (int i = 0; i < player.getActiveSongCount(); i++)
                 {
                     if (player.getPlaylist(playlistPicker.SelectedIndex).contains(player.getSong(i)))
@@ -81,14 +82,6 @@ namespace Music_Player
                         songsNotInPlaylist.Items.Add(player.getSong(i).getTitle + " - " + player.getSong(i).getArtist());
                         outPlaylist.Add(player.getSong(i).getId());
                     }
-                }
-                if (player.getPlaylist(playlistPicker.SelectedIndex).isShuffled())
-                {
-                    button2.Text = "unshuffle";
-                }
-                else
-                {
-                    button2.Text = "shuffle";
                 }
             }
             songsInPlaylist.SelectedIndex = -1;
@@ -129,33 +122,18 @@ namespace Music_Player
         {
             if (playlistPicker.SelectedIndex != -1)
             {
+                if (shuffle.Checked) player.getPlaylist(playlistPicker.SelectedIndex).shuffle();
                 if (songsInPlaylist.SelectedIndex == -1)
                 {
                     new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), 0, ref player).Show();
                 }
                 else
                 {
-                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), inPlaylist[songsInPlaylist.SelectedIndex], ref player).Show();
+                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), player.getPlaylist(playlistPicker.SelectedIndex).getRelativeIndex(inPlaylist[songsInPlaylist.SelectedIndex]), ref player).Show();
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (playlistPicker.SelectedIndex != -1)
-            {
-                if (button2.Text == "shuffle")
-                {
-                    button2.Text = "unshuffle";
-                    player.getPlaylist(playlistPicker.SelectedIndex).shuffle();
-                }
-                else
-                {
-                    button2.Text = "shuffle";
-                    player.getPlaylist(playlistPicker.SelectedIndex).shuffle();
-                }
-            }
-        }
 
         private void createPlaylist_Click(object sender, EventArgs e)
         {
