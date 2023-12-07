@@ -70,6 +70,7 @@
             button3.TabIndex = 13;
             button3.Text = "Load";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -79,6 +80,7 @@
             button2.TabIndex = 12;
             button2.Text = "Save";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // HomePage
             // 

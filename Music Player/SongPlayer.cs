@@ -7,11 +7,13 @@ namespace Music_Player
     internal static class SongPlayer
     {
         private readonly static ISoundOut soundOut = new WasapiOut() { Latency = 100 };
+        private static Song? playingSong;
 
         public static void StopSong()
         {
             soundOut.Stop();
             soundOut.WaveSource?.Dispose();
+            playingSong = null;
         }
 
         public static void CloseApp()
@@ -94,6 +96,7 @@ namespace Music_Player
                 throw new ArgumentNullException(song.ToString());
             else if (soundOut.PlaybackState == PlaybackState.Playing || soundOut.PlaybackState == PlaybackState.Paused)
                 StopSong();
+            playingSong = song;
             IWaveSource waveSource = CodecFactory.Instance.GetCodec(song.getPath()).ToSampleSource().ToStereo().ToWaveSource();
             soundOut.Initialize(waveSource);
             soundOut.Play();
@@ -102,6 +105,11 @@ namespace Music_Player
         public static PlaybackState GetPlaybackState()
         {
             return soundOut.PlaybackState;
+        }
+
+        public static Song? getPlayingSong()
+        {
+            return playingSong;
         }
     }
 }

@@ -229,5 +229,9 @@ namespace Music_Player
         {
             return playlists[index];
         }
+        public int getPlaylistCount()
+        {
+            return playlists.Count;
+        }
     }
 }

@@ -61,5 +61,15 @@ namespace Music_Player
             var frm = new SearchSongs(ref player);
             changeForms(frm);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            player.save();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            player.load();
+        }
     }
 }

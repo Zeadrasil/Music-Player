@@ -120,6 +120,10 @@ namespace Music_Player
             {
                 Thread.Sleep(100);
             }
+            if(SongPlayer.getPlayingSong() != song)
+            {
+                Close();
+            }
             if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
             {
                 if (looping)

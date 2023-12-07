@@ -89,31 +89,9 @@ namespace Music_Player
             return false;
         }
 
-        public void play(int startIndex)
+        public void play(int index)
         {
-            overrideCheck = true;
-            Thread.Sleep(250);
-            bool firstRound = true;
-            for(int i = (startIndex == -1) ? 0 : songOrder.IndexOf(startIndex); i < songOrder.Count; i++)
-            {
-                SongPlayer.PlaySong(songs[songOrder[i]]);
-                while(SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Paused || SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
-                {
-                    if(overrideCheck)
-                    {
-                        if(firstRound)
-                        {
-                            firstRound = false;
-                        }
-                        else
-                        {
-                            return;
-                        }
-                    }
-                    overrideCheck = false;
-                    Thread.Sleep(500);
-                }
-            }
+            SongPlayer.PlaySong(songs[songOrder[index]])
         }
 
         public void delete()
@@ -148,6 +126,10 @@ namespace Music_Player
         public int getLength()
         {
             return songs.Count;
+        }
+        public bool contains(Song song)
+        {
+            return songs.Contains(song);
         }
     }
 }
