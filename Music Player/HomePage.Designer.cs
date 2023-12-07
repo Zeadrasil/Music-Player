@@ -32,8 +32,8 @@
             HomePlaylistButton = new Button();
             HomeFindSongButton = new Button();
             imageList1 = new ImageList(components);
-            button3 = new Button();
-            button2 = new Button();
+            loadButton = new Button();
+            saveButton = new Button();
             SuspendLayout();
             // 
             // HomePlaylistButton
@@ -62,33 +62,34 @@
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
-            // button3
+            // loadButton
             // 
-            button3.Location = new Point(169, 12);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 34);
-            button3.TabIndex = 13;
-            button3.Text = "Load";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            loadButton.Location = new Point(169, 12);
+            loadButton.Name = "loadButton";
+            loadButton.Size = new Size(112, 34);
+            loadButton.TabIndex = 13;
+            loadButton.Text = "Load";
+            loadButton.UseVisualStyleBackColor = true;
+            loadButton.Click += loadButton_Click;
             // 
-            // button2
+            // saveButton
             // 
-            button2.Location = new Point(16, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 12;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            saveButton.Location = new Point(16, 12);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(112, 34);
+            saveButton.TabIndex = 12;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(307, 182);
-            Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(loadButton);
+            Controls.Add(saveButton);
             Controls.Add(HomeFindSongButton);
             Controls.Add(HomePlaylistButton);
             Name = "HomePage";
@@ -100,7 +101,7 @@
         private Button HomePlaylistButton;
         private Button HomeFindSongButton;
         private ImageList imageList1;
-        private Button button3;
-        private Button button2;
+        private Button loadButton;
+        private Button saveButton;
     }
 }

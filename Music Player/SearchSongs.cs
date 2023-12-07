@@ -74,7 +74,7 @@ namespace Music_Player
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void playSelectedSong_Click(object sender, EventArgs e)
         {
             if (returnedSongs.SelectedIndex != -1)
             {

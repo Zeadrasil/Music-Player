@@ -81,6 +81,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(503, 193);
             Controls.Add(confirmButton);
             Controls.Add(cancelButton);

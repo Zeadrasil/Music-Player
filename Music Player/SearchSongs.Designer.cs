@@ -33,9 +33,12 @@
             SearchPlaylistButton = new Button();
             searchParameters = new TextBox();
             returnedSongs = new ListBox();
-            pictureBox1 = new PictureBox();
+            playSelectedSong = new PictureBox();
             imageList1 = new ImageList(components);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            changeName = new Button();
+            changeArtist = new Button();
+            changeFilePath = new Button();
+            ((System.ComponentModel.ISupportInitialize)playSelectedSong).BeginInit();
             SuspendLayout();
             // 
             // SearchPlaylistButton
@@ -65,16 +68,16 @@
             returnedSongs.Size = new Size(610, 154);
             returnedSongs.TabIndex = 14;
             // 
-            // pictureBox1
+            // playSelectedSong
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(369, 270);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(61, 58);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 15;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            playSelectedSong.Image = (Image)resources.GetObject("playSelectedSong.Image");
+            playSelectedSong.Location = new Point(379, 270);
+            playSelectedSong.Name = "playSelectedSong";
+            playSelectedSong.Size = new Size(61, 58);
+            playSelectedSong.SizeMode = PictureBoxSizeMode.StretchImage;
+            playSelectedSong.TabIndex = 15;
+            playSelectedSong.TabStop = false;
+            playSelectedSong.Click += playSelectedSong_Click;
             // 
             // imageList1
             // 
@@ -83,18 +86,48 @@
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "play.png");
             // 
+            // changeName
+            // 
+            changeName.Location = new Point(107, 12);
+            changeName.Name = "changeName";
+            changeName.Size = new Size(129, 34);
+            changeName.TabIndex = 16;
+            changeName.Text = "changeName";
+            changeName.UseVisualStyleBackColor = true;
+            // 
+            // changeArtist
+            // 
+            changeArtist.Location = new Point(346, 12);
+            changeArtist.Name = "changeArtist";
+            changeArtist.Size = new Size(129, 34);
+            changeArtist.TabIndex = 17;
+            changeArtist.Text = "changeArtist";
+            changeArtist.UseVisualStyleBackColor = true;
+            // 
+            // changeFilePath
+            // 
+            changeFilePath.Location = new Point(588, 12);
+            changeFilePath.Name = "changeFilePath";
+            changeFilePath.Size = new Size(129, 34);
+            changeFilePath.TabIndex = 18;
+            changeFilePath.Text = "changeFile";
+            changeFilePath.UseVisualStyleBackColor = true;
+            // 
             // SearchSongs
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(pictureBox1);
+            Controls.Add(changeFilePath);
+            Controls.Add(changeArtist);
+            Controls.Add(changeName);
+            Controls.Add(playSelectedSong);
             Controls.Add(returnedSongs);
             Controls.Add(searchParameters);
             Controls.Add(SearchPlaylistButton);
             Name = "SearchSongs";
             Text = "lkm";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)playSelectedSong).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,7 +136,10 @@
         private Button SearchPlaylistButton;
         private TextBox searchParameters;
         private ListBox returnedSongs;
-        private PictureBox pictureBox1;
+        private PictureBox playSelectedSong;
         private ImageList imageList1;
+        private Button changeName;
+        private Button changeArtist;
+        private Button changeFilePath;
     }
 }

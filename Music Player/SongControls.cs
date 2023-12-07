@@ -148,7 +148,7 @@ namespace Music_Player
 
         private void SongControls_Load(object sender, EventArgs e)
         {
-            if(playlist != null)
+            if (playlist != null)
             {
                 playlistName.Text = playlist.getName();
             }

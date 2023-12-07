@@ -93,6 +93,7 @@
             // 
             // songsNotInPlaylist
             // 
+            songsNotInPlaylist.BackColor = SystemColors.HighlightText;
             songsNotInPlaylist.FormattingEnabled = true;
             songsNotInPlaylist.ItemHeight = 25;
             songsNotInPlaylist.Location = new Point(523, 49);
@@ -172,6 +173,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);

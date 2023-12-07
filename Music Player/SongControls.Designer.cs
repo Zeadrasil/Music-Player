@@ -39,10 +39,12 @@
             artistName = new Label();
             playlistName = new Label();
             checkBox1 = new CheckBox();
+            placeInSong = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)songArt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)placeInSong).BeginInit();
             SuspendLayout();
             // 
             // imageList1
@@ -114,7 +116,7 @@
             // 
             // playlistName
             // 
-            playlistName.Location = new Point(25, 9);
+            playlistName.Location = new Point(25, 1);
             playlistName.Name = "playlistName";
             playlistName.Size = new Size(750, 25);
             playlistName.TabIndex = 16;
@@ -131,11 +133,23 @@
             checkBox1.Text = "checkBox1";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // placeInSong
+            // 
+            placeInSong.AutoSize = false;
+            placeInSong.Location = new Point(300, 256);
+            placeInSong.Name = "placeInSong";
+            placeInSong.Size = new Size(200, 20);
+            placeInSong.TabIndex = 18;
+            placeInSong.TickFrequency = 0;
+            placeInSong.TickStyle = TickStyle.None;
+            // 
             // SongControls
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(placeInSong);
             Controls.Add(checkBox1);
             Controls.Add(playlistName);
             Controls.Add(artistName);
@@ -151,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)placeInSong).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,5 +181,6 @@
         private Label artistName;
         private Label playlistName;
         private CheckBox checkBox1;
+        private TrackBar placeInSong;
     }
 }
