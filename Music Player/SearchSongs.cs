@@ -81,5 +81,20 @@ namespace Music_Player
                 new SongControls(player.getSong(returnedSongs.SelectedIndex), ref player).Show();
             }
         }
+
+        private void changeName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeArtist_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void changeFilePath_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
