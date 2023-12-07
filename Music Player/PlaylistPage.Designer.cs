@@ -39,7 +39,6 @@
             songsInPlaylist = new ListBox();
             songSearchResult = new TextBox();
             playPlaylist = new PictureBox();
-            button2 = new Button();
             createPlaylist = new Button();
             removePlaylist = new Button();
             shuffle = new CheckBox();
@@ -128,16 +127,6 @@
             playPlaylist.TabStop = false;
             playPlaylist.Click += playPlaylist_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(423, 293);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 18;
-            button2.Text = "shuffle";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // createPlaylist
             // 
             createPlaylist.Location = new Point(283, 51);
@@ -176,7 +165,6 @@
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);
             Controls.Add(createPlaylist);
-            Controls.Add(button2);
             Controls.Add(playPlaylist);
             Controls.Add(songSearchResult);
             Controls.Add(songsInPlaylist);
@@ -204,7 +192,6 @@
         private ListBox songsInPlaylist;
         private TextBox songSearchResult;
         private PictureBox playPlaylist;
-        private Button button2;
         private Button createPlaylist;
         private Button removePlaylist;
         private CheckBox looping;

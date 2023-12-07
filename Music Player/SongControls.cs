@@ -96,9 +96,6 @@ namespace Music_Player
             changeForms(new SongControls(playlist, playlistIndex - 1, ref player));
         }
 
-        private void pauseSongPicBox_Click(object sender, EventArgs e)
-        {
-        }
 
         private void playSongPicBox_Click(object sender, EventArgs e)
         {
@@ -126,7 +123,7 @@ namespace Music_Player
             }
             if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
             {
-                if (looping)
+                if (checkBox1.Checked)
                 {
                     playSongPicBox_Click(sender, e);
                 }

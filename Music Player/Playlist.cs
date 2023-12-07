@@ -91,7 +91,7 @@ namespace Music_Player
 
         public void play(int index)
         {
-            SongPlayer.PlaySong(songs[songOrder[index]])
+            SongPlayer.PlaySong(songs[songOrder[index]]);
         }
 
         public void delete()
@@ -130,6 +130,10 @@ namespace Music_Player
         public bool contains(Song song)
         {
             return songs.Contains(song);
+        }
+        public int getRelativeIndex(int index)
+        {
+            return songOrder.IndexOf(index);
         }
     }
 }
