@@ -31,11 +31,14 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SongControls));
             imageList1 = new ImageList(components);
-            pictureBox1 = new PictureBox();
+            songArt = new PictureBox();
             previousSongPicBox = new PictureBox();
             playSongPicBox = new PictureBox();
             nextSongPicBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            songName = new Label();
+            artistName = new Label();
+            playlistName = new Label();
+            ((System.ComponentModel.ISupportInitialize)songArt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).BeginInit();
@@ -49,18 +52,18 @@
             imageList1.Images.SetKeyName(0, "play.png");
             imageList1.Images.SetKeyName(1, "pause.png");
             // 
-            // pictureBox1
+            // songArt
             // 
-            pictureBox1.Location = new Point(288, 29);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(230, 221);
-            pictureBox1.TabIndex = 9;
-            pictureBox1.TabStop = false;
+            songArt.Location = new Point(288, 29);
+            songArt.Name = "songArt";
+            songArt.Size = new Size(230, 221);
+            songArt.TabIndex = 9;
+            songArt.TabStop = false;
             // 
             // previousSongPicBox
             // 
             previousSongPicBox.Image = (Image)resources.GetObject("previousSongPicBox.Image");
-            previousSongPicBox.Location = new Point(288, 269);
+            previousSongPicBox.Location = new Point(288, 331);
             previousSongPicBox.Name = "previousSongPicBox";
             previousSongPicBox.Size = new Size(64, 55);
             previousSongPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -71,7 +74,7 @@
             // playSongPicBox
             // 
             playSongPicBox.Image = (Image)resources.GetObject("playSongPicBox.Image");
-            playSongPicBox.Location = new Point(372, 269);
+            playSongPicBox.Location = new Point(372, 331);
             playSongPicBox.Name = "playSongPicBox";
             playSongPicBox.Size = new Size(64, 55);
             playSongPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -82,7 +85,7 @@
             // nextSongPicBox
             // 
             nextSongPicBox.Image = (Image)resources.GetObject("nextSongPicBox.Image");
-            nextSongPicBox.Location = new Point(454, 269);
+            nextSongPicBox.Location = new Point(454, 331);
             nextSongPicBox.Name = "nextSongPicBox";
             nextSongPicBox.Size = new Size(64, 55);
             nextSongPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -90,30 +93,64 @@
             nextSongPicBox.TabStop = false;
             nextSongPicBox.Click += nextSongPicBox_Click;
             // 
+            // songName
+            // 
+            songName.AutoSize = true;
+            songName.Location = new Point(288, 264);
+            songName.Name = "songName";
+            songName.Size = new Size(99, 25);
+            songName.TabIndex = 14;
+            songName.Text = "songName";
+            // 
+            // artistName
+            // 
+            artistName.AutoSize = true;
+            artistName.Location = new Point(288, 289);
+            artistName.Name = "artistName";
+            artistName.Size = new Size(98, 25);
+            artistName.TabIndex = 15;
+            artistName.Text = "artistName";
+            // 
+            // playlistName
+            // 
+            playlistName.AutoSize = true;
+            playlistName.Location = new Point(344, 1);
+            playlistName.Name = "playlistName";
+            playlistName.Size = new Size(114, 25);
+            playlistName.TabIndex = 16;
+            playlistName.Text = "playlistName";
+            // 
             // SongControls
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(playlistName);
+            Controls.Add(artistName);
+            Controls.Add(songName);
             Controls.Add(nextSongPicBox);
             Controls.Add(playSongPicBox);
             Controls.Add(previousSongPicBox);
-            Controls.Add(pictureBox1);
+            Controls.Add(songArt);
             Name = "SongControls";
             Text = "SongControls";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)songArt).EndInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ImageList imageList1;
-        private PictureBox pictureBox1;
+        private PictureBox songArt;
         private PictureBox previousSongPicBox;
         private PictureBox playSongPicBox;
         private PictureBox nextSongPicBox;
+        private Label songName;
+        private Label artistName;
+        private Label playlistName;
     }
 }

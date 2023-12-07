@@ -120,7 +120,7 @@ namespace Music_Player
             {
                 Thread.Sleep(100);
             }
-            if(SongPlayer.getPlayingSong() != song)
+            if (SongPlayer.getPlayingSong() != song)
             {
                 Close();
             }
