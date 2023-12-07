@@ -94,22 +94,6 @@ namespace Music_Player
             return artist;
         }
 
-        [Obsolete("Please do not use it does not work")]
-        public Image getCoverArt()
-        {
-            if (coverArt == null)
-            {
-                TagLib.IPicture p = TagLib.File.Create(path).Tag.Pictures[0];
-                TagLib.Picture pic = new TagLib.Picture(p);
-
-                if (coverArt == null)
-                    throw new Exception("coverArt is null");
-
-                return coverArt;
-            }
-            return coverArt;
-        }
-
         public void updateName()
         {
             string[] temp = new string[1];

@@ -15,7 +15,6 @@ namespace Music_Player
         private int id;
         private static int count;
         private static List<int> openIds = new List<int>();
-        private bool overrideCheck = false;
         public Playlist(string name, int id)
         {
             this.name = name;

@@ -16,8 +16,6 @@ namespace Music_Player
         private Song song;
         private Playlist? playlist;
         MusicPlayer player;
-        bool looping = false; //Placeholder, there should be a control for this
-        bool playlistLooping = false; //Placeholder, there should be a control for this
         public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
@@ -25,14 +23,13 @@ namespace Music_Player
             onCreate();
             this.player = player;
         }
-        public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player, bool playlistLooping = false)
+        public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
         {
             InitializeComponent();
             song = playlist.getSong(playlistIndex);
             this.playlistIndex = playlistIndex;
             this.playlist = playlist;
             this.player = player;
-            this.playlistLooping = playlistLooping;
             onCreate();
         }
         private void onCreate()
@@ -60,6 +57,7 @@ namespace Music_Player
             }
             SongPlayer.StopSong();
             SongPlayer.PlaySong(song);
+            playSongPicBox.Image = imageList1.Images[1];
             placeInSong.Maximum = SongPlayer.getLength() / 100;
         }
         private void changeForms(Form frm)
@@ -94,7 +92,14 @@ namespace Music_Player
 
         private void previousSongPicBox_Click(object sender, EventArgs e)
         {
-            changeForms(new SongControls(playlist, playlistIndex - 1, ref player));
+            if (playlistIndex == 0)
+            {
+                changeForms(new SongControls(playlist, playlist.getLength() - 1, ref player));
+            }
+            else
+            {
+                changeForms(new SongControls(playlist, playlistIndex - 1, ref player));
+            }
         }
 
 
@@ -108,13 +113,13 @@ namespace Music_Player
             else if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Paused)
             {
                 SongPlayer.ResumeSong();
-                playSongPicBox.Image = imageList1.Images[0];
+                playSongPicBox.Image = imageList1.Images[1];
             }
             else
             {
                 SongPlayer.PlaySong(song);
             }
-            while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
+            while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && SongPlayer.getPlayingSong() == song)
             {
                 Thread.Sleep(100);
                 if (placeInSong.Value + 1 <= placeInSong.Maximum)
@@ -146,7 +151,7 @@ namespace Music_Player
 
         private void nextSongPicBox_Click(object sender, EventArgs e)
         {
-            if (playlistLooping && playlistIndex == playlist.getLength())
+            if (playlistIndex == playlist.getLength())
             {
                 playlistIndex = -1;
             }
