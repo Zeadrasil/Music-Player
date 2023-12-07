@@ -110,21 +110,38 @@ namespace Music_Player
             return coverArt;
         }
 
-        /* public void updateName()
+        public void updateName()
         {
             string[] temp = new string[1];
-            temp[0] = name;
-            GetStringForm gsf = new GetStringForm("New name for " + name + ":", ref temp);
+            temp[0] = title;
+            GetStringForm gsf = new GetStringForm("New name for " + title + ":", ref temp);
             gsf.ShowDialog();
-            name = temp[0];
-        } */
+            title = temp[0];
+        }
+        public void updateArtist()
+        {
+            string[] temp = new string[1];
+            temp[0] = artist;
+            GetStringForm gsf = new GetStringForm("New artist for " + title + ":", ref temp);
+            gsf.ShowDialog();
+            artist = temp[0];
+        }
+        public void updatePath()
+        {
+            openFileDialog.FileName = path;
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                path = openFileDialog.FileName;
+            }
+        }
         public void delete()
         {
             openIds.Add(id);
             openIds.Sort();
             while (playlists.Count > 0)
             {
-
+                playlists[0].removeSong(this);
+                playlists.RemoveAt(0);
             }
         }
 

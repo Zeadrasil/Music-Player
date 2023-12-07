@@ -118,5 +118,9 @@ namespace Music_Player
         {
             return playingSong;
         }
+        public static int getLength()
+        {
+            return Extensions.GetLength(soundOut.WaveSource).Milliseconds;
+        }
     }
 }

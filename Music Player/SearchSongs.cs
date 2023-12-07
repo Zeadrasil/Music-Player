@@ -84,17 +84,26 @@ namespace Music_Player
 
         private void changeName_Click(object sender, EventArgs e)
         {
-
+            if (returnedSongs.SelectedIndex != -1)
+            {
+                player.getSong(returnedSongs.SelectedIndex).updateName();
+            }
         }
 
         private void changeArtist_Click(object sender, EventArgs e)
         {
-
+            if (returnedSongs.SelectedIndex != -1)
+            {
+                player.getSong(returnedSongs.SelectedIndex).updateArtist();
+            }
         }
 
         private void changeFilePath_Click(object sender, EventArgs e)
         {
-
+            if (returnedSongs.SelectedIndex != -1)
+            {
+                player.getSong(returnedSongs.SelectedIndex).updatePath();
+            }
         }
     }
 }
