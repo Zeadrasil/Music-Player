@@ -38,6 +38,7 @@
             songName = new Label();
             artistName = new Label();
             playlistName = new Label();
+            checkBox1 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)songArt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).BeginInit();
@@ -95,36 +96,47 @@
             // 
             // songName
             // 
-            songName.AutoSize = true;
-            songName.Location = new Point(288, 264);
+            songName.Location = new Point(25, 269);
             songName.Name = "songName";
-            songName.Size = new Size(99, 25);
+            songName.Size = new Size(750, 25);
             songName.TabIndex = 14;
             songName.Text = "songName";
+            songName.TextAlign = ContentAlignment.TopCenter;
             // 
             // artistName
             // 
-            artistName.AutoSize = true;
-            artistName.Location = new Point(288, 289);
+            artistName.Location = new Point(25, 303);
             artistName.Name = "artistName";
-            artistName.Size = new Size(98, 25);
+            artistName.Size = new Size(750, 25);
             artistName.TabIndex = 15;
             artistName.Text = "artistName";
+            artistName.TextAlign = ContentAlignment.TopCenter;
             // 
             // playlistName
             // 
-            playlistName.AutoSize = true;
-            playlistName.Location = new Point(344, 1);
+            playlistName.Location = new Point(25, 9);
             playlistName.Name = "playlistName";
-            playlistName.Size = new Size(114, 25);
+            playlistName.Size = new Size(750, 25);
             playlistName.TabIndex = 16;
             playlistName.Text = "playlistName";
+            playlistName.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(343, 409);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(121, 29);
+            checkBox1.TabIndex = 17;
+            checkBox1.Text = "checkBox1";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
             // SongControls
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(checkBox1);
             Controls.Add(playlistName);
             Controls.Add(artistName);
             Controls.Add(songName);
@@ -152,5 +164,6 @@
         private Label songName;
         private Label artistName;
         private Label playlistName;
+        private CheckBox checkBox1;
     }
 }

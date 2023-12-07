@@ -32,17 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistPage));
             PlaylistFindSongButton = new Button();
             imageList1 = new ImageList(components);
-            button4 = new Button();
-            button1 = new Button();
+            removeSongButton = new Button();
+            addSongButton = new Button();
             playlistPicker = new ComboBox();
             songsNotInPlaylist = new ListBox();
             songsInPlaylist = new ListBox();
             songSearchResult = new TextBox();
-            pictureBox1 = new PictureBox();
+            playPlaylist = new PictureBox();
             button2 = new Button();
-            button3 = new Button();
-            button5 = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            createPlaylist = new Button();
+            removePlaylist = new Button();
+            shuffle = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)playPlaylist).BeginInit();
             SuspendLayout();
             // 
             // PlaylistFindSongButton
@@ -61,25 +62,25 @@
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
-            // button4
+            // removeSongButton
             // 
-            button4.Location = new Point(12, 211);
-            button4.Name = "button4";
-            button4.Size = new Size(112, 34);
-            button4.TabIndex = 12;
-            button4.Text = "remove song";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            removeSongButton.Location = new Point(12, 211);
+            removeSongButton.Name = "removeSongButton";
+            removeSongButton.Size = new Size(112, 34);
+            removeSongButton.TabIndex = 12;
+            removeSongButton.Text = "remove song";
+            removeSongButton.UseVisualStyleBackColor = true;
+            removeSongButton.Click += removeSongButton_Click;
             // 
-            // button1
+            // addSongButton
             // 
-            button1.Location = new Point(165, 211);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 9;
-            button1.Text = "addSong";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            addSongButton.Location = new Point(165, 211);
+            addSongButton.Name = "addSongButton";
+            addSongButton.Size = new Size(112, 34);
+            addSongButton.TabIndex = 9;
+            addSongButton.Text = "addSong";
+            addSongButton.UseVisualStyleBackColor = true;
+            addSongButton.Click += addSongButton_Click;
             // 
             // playlistPicker
             // 
@@ -116,20 +117,20 @@
             songSearchResult.TabIndex = 16;
             songSearchResult.TextChanged += songSearchResult_TextChanged;
             // 
-            // pictureBox1
+            // playPlaylist
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(115, 269);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(61, 58);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 17;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            playPlaylist.Image = (Image)resources.GetObject("playPlaylist.Image");
+            playPlaylist.Location = new Point(115, 269);
+            playPlaylist.Name = "playPlaylist";
+            playPlaylist.Size = new Size(61, 58);
+            playPlaylist.SizeMode = PictureBoxSizeMode.StretchImage;
+            playPlaylist.TabIndex = 17;
+            playPlaylist.TabStop = false;
+            playPlaylist.Click += playPlaylist_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(473, 264);
+            button2.Location = new Point(423, 293);
             button2.Name = "button2";
             button2.Size = new Size(112, 34);
             button2.TabIndex = 18;
@@ -137,46 +138,57 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
+            // createPlaylist
             // 
-            button3.Location = new Point(622, 255);
-            button3.Name = "button3";
-            button3.Size = new Size(112, 72);
-            button3.TabIndex = 19;
-            button3.Text = "create playlist";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            createPlaylist.Location = new Point(283, 51);
+            createPlaylist.Name = "createPlaylist";
+            createPlaylist.Size = new Size(112, 72);
+            createPlaylist.TabIndex = 19;
+            createPlaylist.Text = "create playlist";
+            createPlaylist.UseVisualStyleBackColor = true;
+            createPlaylist.Click += createPlaylist_Click;
             // 
-            // button5
+            // removePlaylist
             // 
-            button5.Location = new Point(490, 332);
-            button5.Name = "button5";
-            button5.Size = new Size(112, 62);
-            button5.TabIndex = 20;
-            button5.Text = "remove playlist";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            removePlaylist.Location = new Point(401, 51);
+            removePlaylist.Name = "removePlaylist";
+            removePlaylist.Size = new Size(116, 72);
+            removePlaylist.TabIndex = 20;
+            removePlaylist.Text = "remove playlist";
+            removePlaylist.UseVisualStyleBackColor = true;
+            removePlaylist.Click += removePlaylist_Click;
+            // 
+            // shuffle
+            // 
+            shuffle.AutoSize = true;
+            shuffle.Location = new Point(352, 129);
+            shuffle.Name = "shuffle";
+            shuffle.Size = new Size(91, 29);
+            shuffle.TabIndex = 22;
+            shuffle.Text = "shuffle";
+            shuffle.UseVisualStyleBackColor = true;
             // 
             // PlaylistPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button5);
-            Controls.Add(button3);
+            Controls.Add(shuffle);
+            Controls.Add(removePlaylist);
+            Controls.Add(createPlaylist);
             Controls.Add(button2);
-            Controls.Add(pictureBox1);
+            Controls.Add(playPlaylist);
             Controls.Add(songSearchResult);
             Controls.Add(songsInPlaylist);
             Controls.Add(songsNotInPlaylist);
             Controls.Add(playlistPicker);
-            Controls.Add(button4);
-            Controls.Add(button1);
+            Controls.Add(removeSongButton);
+            Controls.Add(addSongButton);
             Controls.Add(PlaylistFindSongButton);
             Name = "PlaylistPage";
             Text = "PlaylistPage";
             Load += PlaylistPage_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)playPlaylist).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -185,15 +197,17 @@
 
         private Button PlaylistFindSongButton;
         private ImageList imageList1;
-        private Button button4;
-        private Button button1;
+        private Button removeSongButton;
+        private Button addSongButton;
         private ComboBox playlistPicker;
         private ListBox songsNotInPlaylist;
         private ListBox songsInPlaylist;
         private TextBox songSearchResult;
-        private PictureBox pictureBox1;
+        private PictureBox playPlaylist;
         private Button button2;
-        private Button button3;
-        private Button button5;
+        private Button createPlaylist;
+        private Button removePlaylist;
+        private CheckBox looping;
+        private CheckBox shuffle;
     }
 }

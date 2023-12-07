@@ -109,7 +109,7 @@ namespace Music_Player
             updateDisplays();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void removeSongButton_Click(object sender, EventArgs e)
         {
             if (playlistPicker.SelectedIndex != -1 && songsInPlaylist.SelectedIndex != -1)
             {
@@ -117,7 +117,7 @@ namespace Music_Player
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void addSongButton_Click(object sender, EventArgs e)
         {
             if (playlistPicker.SelectedIndex != -1 && songsNotInPlaylist.SelectedIndex != -1)
             {
@@ -125,7 +125,7 @@ namespace Music_Player
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void playPlaylist_Click(object sender, EventArgs e)
         {
             if (playlistPicker.SelectedIndex != -1)
             {
@@ -157,14 +157,14 @@ namespace Music_Player
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void createPlaylist_Click(object sender, EventArgs e)
         {
             player.addPlaylist();
             playlistPicker.Items.Add(player.getPlaylist(player.getPlaylistCount() - 1).getName());
             playlistPicker.SelectedIndex = playlistPicker.Items.Count - 1;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void removePlaylist_Click(object sender, EventArgs e)
         {
             if (playlistPicker.SelectedIndex != -1)
             {
@@ -174,7 +174,7 @@ namespace Music_Player
 
         private void PlaylistPage_Load(object sender, EventArgs e)
         {
-            for(int i = 0; i < player.getPlaylistCount(); i++)
+            for (int i = 0; i < player.getPlaylistCount(); i++)
             {
                 playlistPicker.Items.Add(player.getPlaylist(i).getName());
             }
