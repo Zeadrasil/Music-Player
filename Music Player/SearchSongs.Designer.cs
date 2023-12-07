@@ -94,6 +94,7 @@
             changeName.TabIndex = 16;
             changeName.Text = "changeName";
             changeName.UseVisualStyleBackColor = true;
+            changeName.Click += changeName_Click;
             // 
             // changeArtist
             // 
@@ -103,6 +104,7 @@
             changeArtist.TabIndex = 17;
             changeArtist.Text = "changeArtist";
             changeArtist.UseVisualStyleBackColor = true;
+            changeArtist.Click += changeArtist_Click;
             // 
             // changeFilePath
             // 
@@ -112,6 +114,7 @@
             changeFilePath.TabIndex = 18;
             changeFilePath.Text = "changeFile";
             changeFilePath.UseVisualStyleBackColor = true;
+            changeFilePath.Click += changeFilePath_Click;
             // 
             // SearchSongs
             // 
