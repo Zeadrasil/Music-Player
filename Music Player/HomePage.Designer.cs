@@ -38,22 +38,26 @@
             // 
             // HomePlaylistButton
             // 
+            HomePlaylistButton.BackColor = SystemColors.ActiveCaptionText;
+            HomePlaylistButton.ForeColor = SystemColors.ButtonFace;
             HomePlaylistButton.Location = new Point(16, 109);
             HomePlaylistButton.Name = "HomePlaylistButton";
             HomePlaylistButton.Size = new Size(112, 34);
             HomePlaylistButton.TabIndex = 1;
             HomePlaylistButton.Text = "playlists";
-            HomePlaylistButton.UseVisualStyleBackColor = true;
+            HomePlaylistButton.UseVisualStyleBackColor = false;
             HomePlaylistButton.Click += HomePlaylistButton_Click;
             // 
             // HomeFindSongButton
             // 
+            HomeFindSongButton.BackColor = SystemColors.ActiveCaptionText;
+            HomeFindSongButton.ForeColor = SystemColors.ButtonFace;
             HomeFindSongButton.Location = new Point(169, 109);
             HomeFindSongButton.Name = "HomeFindSongButton";
             HomeFindSongButton.Size = new Size(112, 34);
             HomeFindSongButton.TabIndex = 4;
             HomeFindSongButton.Text = "search";
-            HomeFindSongButton.UseVisualStyleBackColor = true;
+            HomeFindSongButton.UseVisualStyleBackColor = false;
             HomeFindSongButton.Click += HomeFindSongButton_Click;
             // 
             // imageList1
@@ -64,29 +68,33 @@
             // 
             // loadButton
             // 
+            loadButton.BackColor = SystemColors.ActiveCaptionText;
+            loadButton.ForeColor = SystemColors.ButtonFace;
             loadButton.Location = new Point(169, 12);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(112, 34);
             loadButton.TabIndex = 13;
             loadButton.Text = "Load";
-            loadButton.UseVisualStyleBackColor = true;
+            loadButton.UseVisualStyleBackColor = false;
             loadButton.Click += loadButton_Click;
             // 
             // saveButton
             // 
+            saveButton.BackColor = SystemColors.ActiveCaptionText;
+            saveButton.ForeColor = SystemColors.ButtonFace;
             saveButton.Location = new Point(16, 12);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(112, 34);
             saveButton.TabIndex = 12;
             saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = true;
+            saveButton.UseVisualStyleBackColor = false;
             saveButton.Click += saveButton_Click;
             // 
             // HomePage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(307, 182);
             Controls.Add(loadButton);
             Controls.Add(saveButton);

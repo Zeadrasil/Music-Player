@@ -57,6 +57,7 @@
             // 
             // songArt
             // 
+            songArt.BackColor = SystemColors.ActiveCaptionText;
             songArt.Location = new Point(288, 29);
             songArt.Name = "songArt";
             songArt.Size = new Size(230, 221);
@@ -65,10 +66,11 @@
             // 
             // previousSongPicBox
             // 
+            previousSongPicBox.BackColor = SystemColors.ActiveCaptionText;
             previousSongPicBox.Image = (Image)resources.GetObject("previousSongPicBox.Image");
             previousSongPicBox.Location = new Point(288, 331);
             previousSongPicBox.Name = "previousSongPicBox";
-            previousSongPicBox.Size = new Size(64, 55);
+            previousSongPicBox.Size = new Size(55, 55);
             previousSongPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
             previousSongPicBox.TabIndex = 10;
             previousSongPicBox.TabStop = false;
@@ -76,6 +78,7 @@
             // 
             // playSongPicBox
             // 
+            playSongPicBox.BackColor = SystemColors.ActiveCaptionText;
             playSongPicBox.Image = (Image)resources.GetObject("playSongPicBox.Image");
             playSongPicBox.Location = new Point(372, 331);
             playSongPicBox.Name = "playSongPicBox";
@@ -87,10 +90,11 @@
             // 
             // nextSongPicBox
             // 
+            nextSongPicBox.BackColor = SystemColors.ActiveCaptionText;
             nextSongPicBox.Image = (Image)resources.GetObject("nextSongPicBox.Image");
-            nextSongPicBox.Location = new Point(454, 331);
+            nextSongPicBox.Location = new Point(461, 331);
             nextSongPicBox.Name = "nextSongPicBox";
-            nextSongPicBox.Size = new Size(64, 55);
+            nextSongPicBox.Size = new Size(55, 55);
             nextSongPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
             nextSongPicBox.TabIndex = 13;
             nextSongPicBox.TabStop = false;
@@ -98,6 +102,8 @@
             // 
             // songName
             // 
+            songName.BackColor = SystemColors.ActiveCaptionText;
+            songName.ForeColor = SystemColors.ButtonFace;
             songName.Location = new Point(25, 269);
             songName.Name = "songName";
             songName.Size = new Size(750, 25);
@@ -107,6 +113,8 @@
             // 
             // artistName
             // 
+            artistName.BackColor = SystemColors.ActiveCaptionText;
+            artistName.ForeColor = SystemColors.ButtonFace;
             artistName.Location = new Point(25, 303);
             artistName.Name = "artistName";
             artistName.Size = new Size(750, 25);
@@ -116,6 +124,8 @@
             // 
             // playlistName
             // 
+            playlistName.BackColor = SystemColors.ActiveCaptionText;
+            playlistName.ForeColor = SystemColors.ButtonFace;
             playlistName.Location = new Point(25, 1);
             playlistName.Name = "playlistName";
             playlistName.Size = new Size(750, 25);
@@ -126,16 +136,20 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
+            checkBox1.BackColor = SystemColors.ActiveCaptionText;
+            checkBox1.ForeColor = SystemColors.ButtonFace;
             checkBox1.Location = new Point(343, 409);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(121, 29);
             checkBox1.TabIndex = 17;
             checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.UseVisualStyleBackColor = false;
             // 
             // placeInSong
             // 
             placeInSong.AutoSize = false;
+            placeInSong.BackColor = SystemColors.ActiveCaptionText;
+            placeInSong.Cursor = Cursors.NoMoveHoriz;
             placeInSong.Location = new Point(300, 256);
             placeInSong.Name = "placeInSong";
             placeInSong.Size = new Size(200, 20);
@@ -147,7 +161,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
             Controls.Add(placeInSong);
             Controls.Add(checkBox1);

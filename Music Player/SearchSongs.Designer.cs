@@ -43,16 +43,21 @@
             // 
             // SearchPlaylistButton
             // 
-            SearchPlaylistButton.Location = new Point(346, 404);
+            SearchPlaylistButton.BackColor = SystemColors.ActiveCaptionText;
+            SearchPlaylistButton.ForeColor = SystemColors.ButtonFace;
+            SearchPlaylistButton.ImageAlign = ContentAlignment.TopCenter;
+            SearchPlaylistButton.Location = new Point(346, 357);
             SearchPlaylistButton.Name = "SearchPlaylistButton";
-            SearchPlaylistButton.Size = new Size(112, 34);
+            SearchPlaylistButton.Size = new Size(129, 34);
             SearchPlaylistButton.TabIndex = 9;
             SearchPlaylistButton.Text = "playlists";
-            SearchPlaylistButton.UseVisualStyleBackColor = true;
+            SearchPlaylistButton.UseVisualStyleBackColor = false;
             SearchPlaylistButton.Click += SearchPlaylistButton_Click;
             // 
             // searchParameters
             // 
+            searchParameters.BackColor = SystemColors.ActiveCaptionText;
+            searchParameters.ForeColor = SystemColors.ButtonFace;
             searchParameters.Location = new Point(107, 60);
             searchParameters.Name = "searchParameters";
             searchParameters.Size = new Size(610, 31);
@@ -61,6 +66,8 @@
             // 
             // returnedSongs
             // 
+            returnedSongs.BackColor = SystemColors.ActiveCaptionText;
+            returnedSongs.ForeColor = SystemColors.ButtonFace;
             returnedSongs.FormattingEnabled = true;
             returnedSongs.ItemHeight = 25;
             returnedSongs.Location = new Point(107, 110);
@@ -70,6 +77,7 @@
             // 
             // playSelectedSong
             // 
+            playSelectedSong.BackColor = SystemColors.ActiveCaptionText;
             playSelectedSong.Image = (Image)resources.GetObject("playSelectedSong.Image");
             playSelectedSong.Location = new Point(379, 270);
             playSelectedSong.Name = "playSelectedSong";
@@ -88,35 +96,42 @@
             // 
             // changeName
             // 
+            changeName.BackColor = SystemColors.ActiveCaptionText;
+            changeName.ForeColor = SystemColors.ButtonFace;
             changeName.Location = new Point(107, 12);
             changeName.Name = "changeName";
             changeName.Size = new Size(129, 34);
             changeName.TabIndex = 16;
             changeName.Text = "changeName";
-            changeName.UseVisualStyleBackColor = true;
+            changeName.UseVisualStyleBackColor = false;
             // 
             // changeArtist
             // 
+            changeArtist.BackColor = SystemColors.ActiveCaptionText;
+            changeArtist.ForeColor = SystemColors.ButtonFace;
             changeArtist.Location = new Point(346, 12);
             changeArtist.Name = "changeArtist";
             changeArtist.Size = new Size(129, 34);
             changeArtist.TabIndex = 17;
             changeArtist.Text = "changeArtist";
-            changeArtist.UseVisualStyleBackColor = true;
+            changeArtist.UseVisualStyleBackColor = false;
             // 
             // changeFilePath
             // 
+            changeFilePath.BackColor = SystemColors.ActiveCaptionText;
+            changeFilePath.ForeColor = SystemColors.ButtonFace;
             changeFilePath.Location = new Point(588, 12);
             changeFilePath.Name = "changeFilePath";
             changeFilePath.Size = new Size(129, 34);
             changeFilePath.TabIndex = 18;
             changeFilePath.Text = "changeFile";
-            changeFilePath.UseVisualStyleBackColor = true;
+            changeFilePath.UseVisualStyleBackColor = false;
             // 
             // SearchSongs
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
             Controls.Add(changeFilePath);
             Controls.Add(changeArtist);

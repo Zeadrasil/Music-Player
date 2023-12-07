@@ -42,17 +42,20 @@
             createPlaylist = new Button();
             removePlaylist = new Button();
             shuffle = new CheckBox();
+            changePlaylistName = new Button();
             ((System.ComponentModel.ISupportInitialize)playPlaylist).BeginInit();
             SuspendLayout();
             // 
             // PlaylistFindSongButton
             // 
+            PlaylistFindSongButton.BackColor = SystemColors.ActiveCaptionText;
+            PlaylistFindSongButton.ForeColor = SystemColors.ButtonFace;
             PlaylistFindSongButton.Location = new Point(676, 404);
             PlaylistFindSongButton.Name = "PlaylistFindSongButton";
             PlaylistFindSongButton.Size = new Size(112, 34);
             PlaylistFindSongButton.TabIndex = 8;
             PlaylistFindSongButton.Text = "songs";
-            PlaylistFindSongButton.UseVisualStyleBackColor = true;
+            PlaylistFindSongButton.UseVisualStyleBackColor = false;
             PlaylistFindSongButton.Click += PlaylistFindSongButton_Click;
             // 
             // imageList1
@@ -63,26 +66,32 @@
             // 
             // removeSongButton
             // 
+            removeSongButton.BackColor = SystemColors.ActiveCaptionText;
+            removeSongButton.ForeColor = SystemColors.ButtonFace;
             removeSongButton.Location = new Point(12, 211);
             removeSongButton.Name = "removeSongButton";
             removeSongButton.Size = new Size(112, 34);
             removeSongButton.TabIndex = 12;
             removeSongButton.Text = "remove song";
-            removeSongButton.UseVisualStyleBackColor = true;
+            removeSongButton.UseVisualStyleBackColor = false;
             removeSongButton.Click += removeSongButton_Click;
             // 
             // addSongButton
             // 
+            addSongButton.BackColor = SystemColors.ActiveCaptionText;
+            addSongButton.ForeColor = SystemColors.ButtonFace;
             addSongButton.Location = new Point(165, 211);
             addSongButton.Name = "addSongButton";
             addSongButton.Size = new Size(112, 34);
             addSongButton.TabIndex = 9;
             addSongButton.Text = "addSong";
-            addSongButton.UseVisualStyleBackColor = true;
+            addSongButton.UseVisualStyleBackColor = false;
             addSongButton.Click += addSongButton_Click;
             // 
             // playlistPicker
             // 
+            playlistPicker.BackColor = SystemColors.ActiveCaptionText;
+            playlistPicker.ForeColor = SystemColors.ButtonFace;
             playlistPicker.FormattingEnabled = true;
             playlistPicker.Location = new Point(12, 12);
             playlistPicker.Name = "playlistPicker";
@@ -92,7 +101,8 @@
             // 
             // songsNotInPlaylist
             // 
-            songsNotInPlaylist.BackColor = SystemColors.HighlightText;
+            songsNotInPlaylist.BackColor = SystemColors.ActiveCaptionText;
+            songsNotInPlaylist.ForeColor = SystemColors.ButtonFace;
             songsNotInPlaylist.FormattingEnabled = true;
             songsNotInPlaylist.ItemHeight = 25;
             songsNotInPlaylist.Location = new Point(523, 49);
@@ -102,6 +112,8 @@
             // 
             // songsInPlaylist
             // 
+            songsInPlaylist.BackColor = SystemColors.ActiveCaptionText;
+            songsInPlaylist.ForeColor = SystemColors.ButtonFace;
             songsInPlaylist.FormattingEnabled = true;
             songsInPlaylist.ItemHeight = 25;
             songsInPlaylist.Location = new Point(12, 51);
@@ -111,6 +123,8 @@
             // 
             // songSearchResult
             // 
+            songSearchResult.BackColor = SystemColors.ActiveCaptionText;
+            songSearchResult.ForeColor = SystemColors.ButtonFace;
             songSearchResult.Location = new Point(620, 12);
             songSearchResult.Name = "songSearchResult";
             songSearchResult.Size = new Size(168, 31);
@@ -119,6 +133,7 @@
             // 
             // playPlaylist
             // 
+            playPlaylist.BackColor = SystemColors.ActiveCaptionText;
             playPlaylist.Image = (Image)resources.GetObject("playPlaylist.Image");
             playPlaylist.Location = new Point(115, 269);
             playPlaylist.Name = "playPlaylist";
@@ -130,40 +145,58 @@
             // 
             // createPlaylist
             // 
+            createPlaylist.BackColor = SystemColors.ActiveCaptionText;
+            createPlaylist.ForeColor = SystemColors.ButtonFace;
             createPlaylist.Location = new Point(283, 51);
             createPlaylist.Name = "createPlaylist";
             createPlaylist.Size = new Size(112, 72);
             createPlaylist.TabIndex = 19;
             createPlaylist.Text = "create playlist";
-            createPlaylist.UseVisualStyleBackColor = true;
+            createPlaylist.UseVisualStyleBackColor = false;
             createPlaylist.Click += createPlaylist_Click;
             // 
             // removePlaylist
             // 
+            removePlaylist.BackColor = SystemColors.ActiveCaptionText;
+            removePlaylist.ForeColor = SystemColors.ButtonFace;
             removePlaylist.Location = new Point(401, 51);
             removePlaylist.Name = "removePlaylist";
             removePlaylist.Size = new Size(116, 72);
             removePlaylist.TabIndex = 20;
             removePlaylist.Text = "remove playlist";
-            removePlaylist.UseVisualStyleBackColor = true;
+            removePlaylist.UseVisualStyleBackColor = false;
             removePlaylist.Click += removePlaylist_Click;
             // 
             // shuffle
             // 
             shuffle.AutoSize = true;
+            shuffle.BackColor = SystemColors.ActiveCaptionText;
+            shuffle.ForeColor = SystemColors.ButtonFace;
             shuffle.Location = new Point(352, 129);
             shuffle.Name = "shuffle";
             shuffle.Size = new Size(91, 29);
             shuffle.TabIndex = 22;
             shuffle.Text = "shuffle";
-            shuffle.UseVisualStyleBackColor = true;
+            shuffle.UseVisualStyleBackColor = false;
+            // 
+            // changePlaylistName
+            // 
+            changePlaylistName.BackColor = SystemColors.ActiveCaptionText;
+            changePlaylistName.ForeColor = SystemColors.ButtonFace;
+            changePlaylistName.Location = new Point(283, 9);
+            changePlaylistName.Name = "changePlaylistName";
+            changePlaylistName.Size = new Size(234, 34);
+            changePlaylistName.TabIndex = 23;
+            changePlaylistName.Text = "change playlist name";
+            changePlaylistName.UseVisualStyleBackColor = false;
             // 
             // PlaylistPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(changePlaylistName);
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);
             Controls.Add(createPlaylist);
@@ -198,5 +231,6 @@
         private Button removePlaylist;
         private CheckBox looping;
         private CheckBox shuffle;
+        private Button changePlaylistName;
     }
 }

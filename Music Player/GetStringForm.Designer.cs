@@ -36,7 +36,9 @@
             // 
             // textBox
             // 
+            textBox.BackColor = SystemColors.ActiveCaptionText;
             textBox.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox.ForeColor = SystemColors.ButtonFace;
             textBox.Location = new Point(12, 63);
             textBox.Name = "textBox";
             textBox.Size = new Size(479, 45);
@@ -45,7 +47,9 @@
             // 
             // label
             // 
+            label.BackColor = SystemColors.ActiveCaptionText;
             label.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label.ForeColor = SystemColors.ButtonFace;
             label.Location = new Point(12, 9);
             label.Name = "label";
             label.Size = new Size(479, 38);
@@ -55,33 +59,32 @@
             // 
             // cancelButton
             // 
-            cancelButton.FlatStyle = FlatStyle.System;
-            cancelButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            cancelButton.Location = new Point(12, 114);
+            cancelButton.BackColor = SystemColors.ActiveCaptionText;
+            cancelButton.ForeColor = Color.Red;
+            cancelButton.Location = new Point(12, 128);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(133, 67);
+            cancelButton.Size = new Size(161, 53);
             cancelButton.TabIndex = 2;
             cancelButton.Text = "Cancel";
-            cancelButton.UseVisualStyleBackColor = true;
-            cancelButton.Click += cancelButton_Click;
+            cancelButton.UseVisualStyleBackColor = false;
             // 
             // confirmButton
             // 
-            confirmButton.FlatStyle = FlatStyle.System;
-            confirmButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            confirmButton.Location = new Point(358, 114);
+            confirmButton.BackColor = SystemColors.ActiveCaptionText;
+            confirmButton.ForeColor = Color.LawnGreen;
+            confirmButton.Location = new Point(330, 124);
             confirmButton.Name = "confirmButton";
-            confirmButton.Size = new Size(133, 67);
+            confirmButton.Size = new Size(161, 50);
             confirmButton.TabIndex = 3;
             confirmButton.Text = "Confirm";
-            confirmButton.UseVisualStyleBackColor = true;
+            confirmButton.UseVisualStyleBackColor = false;
             confirmButton.Click += confirmButton_Click;
             // 
             // GetStringForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(503, 193);
             Controls.Add(confirmButton);
             Controls.Add(cancelButton);
