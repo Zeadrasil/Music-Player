@@ -96,10 +96,17 @@ namespace Music_Player
                 throw new ArgumentNullException(song.ToString());
             else if (soundOut.PlaybackState == PlaybackState.Playing || soundOut.PlaybackState == PlaybackState.Paused)
                 StopSong();
-            playingSong = song;
-            IWaveSource waveSource = CodecFactory.Instance.GetCodec(song.getPath()).ToSampleSource().ToStereo().ToWaveSource();
-            soundOut.Initialize(waveSource);
-            soundOut.Play();
+            try
+            {
+                IWaveSource waveSource = CodecFactory.Instance.GetCodec(song.getPath()).ToSampleSource().ToStereo().ToWaveSource();
+                soundOut.Initialize(waveSource);
+                soundOut.Play();
+                playingSong = song;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error playing song: \n" +  ex.Message + "\nMost likely solution is to ensure file path of song is valid.\nSong: " + song.getTitle() + " - " + song.getArtist() + "\nCurrent Path: " + song.getPath());
+            }
         }
 
         public static PlaybackState GetPlaybackState()
