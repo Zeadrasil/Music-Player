@@ -59,7 +59,8 @@ namespace Music_Player
                 song = playlist.getSong(playlistIndex);
             }
             SongPlayer.StopSong();
-            playSongPicBox_Click(null, null);
+            SongPlayer.PlaySong(song);
+            placeInSong.Maximum = SongPlayer.getLength() / 100;
         }
         private void changeForms(Form frm)
         {
@@ -116,6 +117,14 @@ namespace Music_Player
             while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
             {
                 Thread.Sleep(100);
+                if (placeInSong.Value + 1 <= placeInSong.Maximum)
+                {
+                    placeInSong.Value++;
+                }
+                else
+                {
+                    placeInSong.Value = placeInSong.Maximum;
+                }
             }
             if (SongPlayer.getPlayingSong() != song)
             {
@@ -125,6 +134,7 @@ namespace Music_Player
             {
                 if (checkBox1.Checked)
                 {
+                    placeInSong.Value = 0;
                     playSongPicBox_Click(sender, e);
                 }
                 else if (playlist != null && playlistIndex < playlist.getLength())
@@ -154,7 +164,12 @@ namespace Music_Player
                 playlistName.Text = "";
             }
             songName.Text = song.getTitle();
-            artistName.Text = song.getArtist();
+            artistName.Text = song.getArtist();  
+        }
+
+        private void placeInSong_Scroll(object sender, EventArgs e)
+        {
+            SongPlayer.SeekToTimeMS(placeInSong.Value * 100);
         }
     }
 }

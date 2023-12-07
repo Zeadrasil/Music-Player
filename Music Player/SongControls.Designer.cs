@@ -142,6 +142,7 @@
             placeInSong.TabIndex = 18;
             placeInSong.TickFrequency = 0;
             placeInSong.TickStyle = TickStyle.None;
+            placeInSong.Scroll += placeInSong_Scroll;
             // 
             // SongControls
             // 
