@@ -91,7 +91,8 @@ namespace Music_Player
                     button2.Text = "shuffle";
                 }
             }
-
+            songsInPlaylist.SelectedIndex = -1;
+            songsNotInPlaylist.SelectedIndex = -1;
         }
 
         private void songSearchResult_TextChanged(object sender, EventArgs e)
@@ -130,11 +131,11 @@ namespace Music_Player
             {
                 if (songsInPlaylist.SelectedIndex == -1)
                 {
-
+                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), 0, ref player).Show();
                 }
                 else
                 {
-                    SongControls sc = new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), inPlaylist[songsInPlaylist.SelectedIndex], ref player);
+                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), inPlaylist[songsInPlaylist.SelectedIndex], ref player).Show();
                 }
             }
         }

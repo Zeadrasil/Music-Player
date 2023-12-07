@@ -54,6 +54,7 @@
             searchParameters.Name = "searchParameters";
             searchParameters.Size = new Size(610, 31);
             searchParameters.TabIndex = 13;
+            searchParameters.TextChanged += searchParameters_TextChanged;
             // 
             // returnedSongs
             // 
@@ -73,6 +74,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // imageList1
             // 

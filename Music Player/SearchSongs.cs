@@ -12,6 +12,7 @@ namespace Music_Player
 {
     public partial class SearchSongs : Form
     {
+        string lastTerm = "";
         MusicPlayer player;
         public SearchSongs(ref MusicPlayer player)
         {
@@ -49,6 +50,35 @@ namespace Music_Player
             {
                 var frm = new SongControls(player.getSong(new Random().Next(player.getActiveSongCount())), ref player);
                 changeForms(frm);
+            }
+        }
+
+        private void searchParameters_TextChanged(object sender, EventArgs e)
+        {
+            if (searchParameters.Text.Length < lastTerm.Length || searchParameters.Text.Length == 0)
+            {
+                player.clearSearch();
+            }
+            if (searchParameters.Text.Length > 0)
+            {
+                player.search(searchParameters.Text);
+            }
+            updateDisplay();
+        }
+        private void updateDisplay()
+        {
+            returnedSongs.Items.Clear();
+            for (int i = 0; i < player.getActiveSongCount(); i++)
+            {
+                returnedSongs.Items.Add(player.getSong(i).getTitle() + " - " + player.getSong(i).getArtist());
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (returnedSongs.SelectedIndex != -1)
+            {
+                new SongControls(player.getSong(returnedSongs.SelectedIndex), ref player).Show();
             }
         }
     }
