@@ -145,5 +145,19 @@ namespace Music_Player
             }
             changeForms(new SongControls(playlist, playlistIndex + 1, ref player));
         }
+
+        private void SongControls_Load(object sender, EventArgs e)
+        {
+            if(playlist != null)
+            {
+                playlistName.Text = playlist.getName();
+            }
+            else
+            {
+                playlistName.Text = "";
+            }
+            songName.Text = song.getTitle();
+            artistName.Text = song.getArtist();
+        }
     }
 }

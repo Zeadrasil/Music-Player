@@ -134,6 +134,7 @@
             Controls.Add(songArt);
             Name = "SongControls";
             Text = "SongControls";
+            Load += SongControls_Load;
             ((System.ComponentModel.ISupportInitialize)songArt).EndInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)playSongPicBox).EndInit();
