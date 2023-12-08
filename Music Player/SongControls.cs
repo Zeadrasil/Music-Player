@@ -6,24 +6,19 @@
         private Song song;
         private Playlist? playlist;
         MusicPlayer player;
-        Task headTask;
+        //Task headTask;
         public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
             this.song = song;
             onCreate();
             this.player = player;
-
-            FormClosing += (sender, e) =>
-            {
-                SongPlayer.StopSong();
-            };
         }
 
-        ~SongControls()
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            headTask.Dispose();
             SongPlayer.StopSong();
+            base.OnFormClosing(e);
         }
 
         public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
@@ -65,6 +60,7 @@
         }
         private void changeForms(Form frm)
         {
+            SongPlayer.StopSong();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
             //frm.FormClosing += delegate { this.Show(); };
@@ -121,7 +117,7 @@
             {
                 SongPlayer.PlaySong(song);
             }
-            
+
             //Place in song is causing problems when trying to update it.
             //headTask = Task.Run(UpdatePlaybackHead);
 
