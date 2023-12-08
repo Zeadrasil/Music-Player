@@ -1,14 +1,4 @@
-﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using TagLib;
-using TagLib.Flac;
-
-namespace Music_Player
+﻿namespace Music_Player
 {
     public partial class Song
     {

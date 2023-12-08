@@ -92,7 +92,7 @@
             Controls.Add(cancelButton);
             Controls.Add(label);
             Controls.Add(textBox);
-            Name = "GetStringForm";
+            Name = "Get String";
             ResumeLayout(false);
             PerformLayout();
         }

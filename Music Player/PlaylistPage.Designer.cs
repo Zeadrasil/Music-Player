@@ -54,7 +54,7 @@
             PlaylistFindSongButton.Name = "PlaylistFindSongButton";
             PlaylistFindSongButton.Size = new Size(112, 34);
             PlaylistFindSongButton.TabIndex = 8;
-            PlaylistFindSongButton.Text = "songs";
+            PlaylistFindSongButton.Text = "Songs";
             PlaylistFindSongButton.UseVisualStyleBackColor = false;
             PlaylistFindSongButton.Click += PlaylistFindSongButton_Click;
             // 
@@ -72,7 +72,7 @@
             removeSongButton.Name = "removeSongButton";
             removeSongButton.Size = new Size(112, 34);
             removeSongButton.TabIndex = 12;
-            removeSongButton.Text = "remove song";
+            removeSongButton.Text = "Remove Song";
             removeSongButton.UseVisualStyleBackColor = false;
             removeSongButton.Click += removeSongButton_Click;
             // 
@@ -82,9 +82,9 @@
             addSongButton.ForeColor = SystemColors.ButtonFace;
             addSongButton.Location = new Point(165, 211);
             addSongButton.Name = "addSongButton";
-            addSongButton.Size = new Size(112, 34);
+            addSongButton.Size = new Size(120, 34);
             addSongButton.TabIndex = 9;
-            addSongButton.Text = "addSong";
+            addSongButton.Text = "Add Song";
             addSongButton.UseVisualStyleBackColor = false;
             addSongButton.Click += addSongButton_Click;
             // 
@@ -151,7 +151,7 @@
             createPlaylist.Name = "createPlaylist";
             createPlaylist.Size = new Size(112, 72);
             createPlaylist.TabIndex = 19;
-            createPlaylist.Text = "create playlist";
+            createPlaylist.Text = "Create Playlist";
             createPlaylist.UseVisualStyleBackColor = false;
             createPlaylist.Click += createPlaylist_Click;
             // 
@@ -163,7 +163,7 @@
             removePlaylist.Name = "removePlaylist";
             removePlaylist.Size = new Size(116, 72);
             removePlaylist.TabIndex = 20;
-            removePlaylist.Text = "remove playlist";
+            removePlaylist.Text = "Remove Playlist";
             removePlaylist.UseVisualStyleBackColor = false;
             removePlaylist.Click += removePlaylist_Click;
             // 
@@ -176,7 +176,7 @@
             shuffle.Name = "shuffle";
             shuffle.Size = new Size(91, 29);
             shuffle.TabIndex = 22;
-            shuffle.Text = "shuffle";
+            shuffle.Text = "Shuffle";
             shuffle.UseVisualStyleBackColor = false;
             // 
             // changePlaylistName
@@ -187,7 +187,7 @@
             changePlaylistName.Name = "changePlaylistName";
             changePlaylistName.Size = new Size(234, 34);
             changePlaylistName.TabIndex = 23;
-            changePlaylistName.Text = "change playlist name";
+            changePlaylistName.Text = "Change Playlist Name";
             changePlaylistName.UseVisualStyleBackColor = false;
             // 
             // PlaylistPage

@@ -50,7 +50,7 @@
             SearchPlaylistButton.Name = "SearchPlaylistButton";
             SearchPlaylistButton.Size = new Size(129, 34);
             SearchPlaylistButton.TabIndex = 9;
-            SearchPlaylistButton.Text = "playlists";
+            SearchPlaylistButton.Text = "Playlists";
             SearchPlaylistButton.UseVisualStyleBackColor = false;
             SearchPlaylistButton.Click += SearchPlaylistButton_Click;
             // 
@@ -100,9 +100,9 @@
             changeName.ForeColor = SystemColors.ButtonFace;
             changeName.Location = new Point(107, 12);
             changeName.Name = "changeName";
-            changeName.Size = new Size(129, 34);
+            changeName.Size = new Size(134, 34);
             changeName.TabIndex = 16;
-            changeName.Text = "changeName";
+            changeName.Text = "Change Name";
             changeName.UseVisualStyleBackColor = false;
             changeName.Click += changeName_Click;
             // 
@@ -114,7 +114,7 @@
             changeArtist.Name = "changeArtist";
             changeArtist.Size = new Size(129, 34);
             changeArtist.TabIndex = 17;
-            changeArtist.Text = "changeArtist";
+            changeArtist.Text = "Change Artist";
             changeArtist.UseVisualStyleBackColor = false;
             changeArtist.Click += changeArtist_Click;
             // 
@@ -126,7 +126,7 @@
             changeFilePath.Name = "changeFilePath";
             changeFilePath.Size = new Size(129, 34);
             changeFilePath.TabIndex = 18;
-            changeFilePath.Text = "changeFile";
+            changeFilePath.Text = "Change File";
             changeFilePath.UseVisualStyleBackColor = false;
             changeFilePath.Click += changeFilePath_Click;
             // 
@@ -144,7 +144,7 @@
             Controls.Add(searchParameters);
             Controls.Add(SearchPlaylistButton);
             Name = "SearchSongs";
-            Text = "lkm";
+            Text = "Search Songs";
             ((System.ComponentModel.ISupportInitialize)playSelectedSong).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace Music_Player
 {
     public partial class Form1 : Form
@@ -9,6 +7,8 @@ namespace Music_Player
         public Form1()
         {
             InitializeComponent();
+            player = new MusicPlayer();
+            lastTerm = "";
         }
 
         private void Form1_Load(object sender, EventArgs e)

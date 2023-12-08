@@ -44,7 +44,7 @@
             HomePlaylistButton.Name = "HomePlaylistButton";
             HomePlaylistButton.Size = new Size(112, 34);
             HomePlaylistButton.TabIndex = 1;
-            HomePlaylistButton.Text = "playlists";
+            HomePlaylistButton.Text = "Playlists";
             HomePlaylistButton.UseVisualStyleBackColor = false;
             HomePlaylistButton.Click += HomePlaylistButton_Click;
             // 
@@ -56,7 +56,7 @@
             HomeFindSongButton.Name = "HomeFindSongButton";
             HomeFindSongButton.Size = new Size(112, 34);
             HomeFindSongButton.TabIndex = 4;
-            HomeFindSongButton.Text = "search";
+            HomeFindSongButton.Text = "Search";
             HomeFindSongButton.UseVisualStyleBackColor = false;
             HomeFindSongButton.Click += HomeFindSongButton_Click;
             // 
@@ -101,7 +101,7 @@
             Controls.Add(HomeFindSongButton);
             Controls.Add(HomePlaylistButton);
             Name = "HomePage";
-            Text = "HomePage";
+            Text = "Home Page";
             ResumeLayout(false);
         }
 

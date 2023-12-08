@@ -108,7 +108,7 @@
             songName.Name = "songName";
             songName.Size = new Size(750, 25);
             songName.TabIndex = 14;
-            songName.Text = "songName";
+            songName.Text = "Song Name";
             songName.TextAlign = ContentAlignment.TopCenter;
             // 
             // artistName
@@ -119,7 +119,7 @@
             artistName.Name = "artistName";
             artistName.Size = new Size(750, 25);
             artistName.TabIndex = 15;
-            artistName.Text = "artistName";
+            artistName.Text = "Artist Name";
             artistName.TextAlign = ContentAlignment.TopCenter;
             // 
             // playlistName
@@ -130,7 +130,7 @@
             playlistName.Name = "playlistName";
             playlistName.Size = new Size(750, 25);
             playlistName.TabIndex = 16;
-            playlistName.Text = "playlistName";
+            playlistName.Text = "Playlist Name";
             playlistName.TextAlign = ContentAlignment.TopCenter;
             // 
             // checkBox1
@@ -174,7 +174,7 @@
             Controls.Add(previousSongPicBox);
             Controls.Add(songArt);
             Name = "SongControls";
-            Text = "SongControls";
+            Text = "Playing Song";
             Load += SongControls_Load;
             ((System.ComponentModel.ISupportInitialize)songArt).EndInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).EndInit();
