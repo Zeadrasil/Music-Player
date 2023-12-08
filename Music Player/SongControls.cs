@@ -16,7 +16,6 @@
 
             FormClosing += (sender, e) =>
             {
-                Console.WriteLine("e");
                 SongPlayer.StopSong();
             };
         }

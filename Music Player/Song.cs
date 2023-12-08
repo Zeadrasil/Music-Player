@@ -79,7 +79,7 @@
         {
             if (string.IsNullOrWhiteSpace(artist))
             {
-                artist = TagLib.File.Create(path).Tag.FirstAlbumArtist;
+                artist = TagLib.File.Create(path).Tag.FirstPerformer;
                 if (string.IsNullOrWhiteSpace(artist))
                 {
                     MessageBox.Show("Song file does not have a artist! Giving it default artist.");

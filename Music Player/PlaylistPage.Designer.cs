@@ -209,7 +209,7 @@
             Controls.Add(addSongButton);
             Controls.Add(PlaylistFindSongButton);
             Name = "PlaylistPage";
-            Text = "PlaylistPage";
+            Text = "Playlist";
             Load += PlaylistPage_Load;
             ((System.ComponentModel.ISupportInitialize)playPlaylist).EndInit();
             ResumeLayout(false);

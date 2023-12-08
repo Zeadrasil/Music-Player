@@ -128,7 +128,8 @@
             changeFilePath.TabIndex = 18;
             changeFilePath.Text = "Change File";
             changeFilePath.UseVisualStyleBackColor = false;
-            changeFilePath.Click += changeFilePath_Click;
+            changeFilePath.Click += addSongButton_Click;
+            //changeFilePath.Click += changeFilePath_Click;
             // 
             // SearchSongs
             // 
