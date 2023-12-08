@@ -5,7 +5,7 @@
         private string? title;
         private string path;
         private string? artist;
-        private Image? coverArt;
+        //private Image? coverArt;
         private int id;
         private static int count = 0;
         private static OpenFileDialog openFileDialog = new OpenFileDialog();

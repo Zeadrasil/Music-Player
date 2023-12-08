@@ -90,7 +90,7 @@ namespace Music_Player
         /// <param name="song">The song to play</param>
         public static void PlaySong(Song song)
         {
-            if (song is null)
+            if (song == null)
                 throw new ArgumentNullException(nameof(song));
             else if (string.IsNullOrEmpty(song.getPath()))
                 throw new ArgumentNullException(song.ToString());
