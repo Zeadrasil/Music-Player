@@ -75,7 +75,7 @@
                 Song song = Song.CreateSong()!;
                 if (song == null)
                 {
-                    return false;
+                    throw new Exception("Error creating song!");
                 }
                 else
                 {
@@ -123,6 +123,9 @@
 
         public void search(string term)
         {
+            if (string.IsNullOrWhiteSpace(term))
+                clearSearch();
+                
             List<Song> newSongs = new List<Song>();
             foreach(Song song in searchedSongs)
             {

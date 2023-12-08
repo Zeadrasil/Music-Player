@@ -10,6 +10,7 @@
         {
             InitializeComponent();
             this.player = player;
+            updateDisplays();
         }
 
         private void changeForms(Form frm)
@@ -53,6 +54,8 @@
 
         private void updateDisplays()
         {
+            songsInPlaylist.BeginUpdate();
+            songsNotInPlaylist.BeginUpdate();
             songsInPlaylist.Items.Clear();
             songsNotInPlaylist.Items.Clear();
             inPlaylist.Clear();
@@ -76,6 +79,8 @@
             }
             songsInPlaylist.SelectedIndex = -1;
             songsNotInPlaylist.SelectedIndex = -1;
+            songsInPlaylist.EndUpdate();
+            songsNotInPlaylist.EndUpdate();
         }
 
         private void songSearchResult_TextChanged(object sender, EventArgs e)
@@ -97,6 +102,7 @@
             if (playlistPicker.SelectedIndex != -1 && songsInPlaylist.SelectedIndex != -1)
             {
                 player.getPlaylist(playlistPicker.SelectedIndex).removeSong(player.getSong(inPlaylist[songsInPlaylist.SelectedIndex]));
+                updateDisplays();
             }
         }
 
@@ -105,12 +111,13 @@
             if (playlistPicker.SelectedIndex != -1 && songsNotInPlaylist.SelectedIndex != -1)
             {
                 player.getPlaylist(playlistPicker.SelectedIndex).addSong(player.getSong(outPlaylist[songsNotInPlaylist.SelectedIndex]));
+                updateDisplays();
             }
         }
 
         private void playPlaylist_Click(object sender, EventArgs e)
         {
-            if (playlistPicker.SelectedIndex != -1 && songsInPlaylist.SelectedIndex != -1)
+            if (playlistPicker.SelectedIndex != -1/*  && songsInPlaylist.SelectedIndex != -1 */)
             {
                 if (shuffle.Checked) player.getPlaylist(playlistPicker.SelectedIndex).shuffle();
                 if (songsInPlaylist.SelectedIndex == -1)

@@ -38,7 +38,6 @@
             songName = new Label();
             artistName = new Label();
             playlistName = new Label();
-            checkBox1 = new CheckBox();
             placeInSong = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)songArt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).BeginInit();
@@ -133,18 +132,6 @@
             playlistName.Text = "Playlist Name";
             playlistName.TextAlign = ContentAlignment.TopCenter;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = SystemColors.ActiveCaptionText;
-            checkBox1.ForeColor = SystemColors.ButtonFace;
-            checkBox1.Location = new Point(343, 409);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(121, 29);
-            checkBox1.TabIndex = 17;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = false;
-            // 
             // placeInSong
             // 
             placeInSong.AutoSize = false;
@@ -164,8 +151,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
-            Controls.Add(placeInSong);
-            Controls.Add(checkBox1);
+            //Controls.Add(placeInSong);
+            //Controls.Add(checkBox1);
             Controls.Add(playlistName);
             Controls.Add(artistName);
             Controls.Add(songName);
@@ -195,7 +182,6 @@
         private Label songName;
         private Label artistName;
         private Label playlistName;
-        private CheckBox checkBox1;
         private TrackBar placeInSong;
     }
 }

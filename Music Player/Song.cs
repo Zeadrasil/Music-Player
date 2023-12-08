@@ -28,12 +28,12 @@
                 string[] name = new string[1];
                 name[0] = openFileDialog.FileName.Split('/').Last();
                 string path = openFileDialog.FileName;
-                string[] artist = new string[1];
+                /* string[] artist = new string[1];
                 artist[0] = "";
                 GetStringForm gsf = new GetStringForm("Please enter the song name", ref name);
                 gsf.ShowDialog();
                 gsf = new GetStringForm("Please enter the artist name", ref artist);
-                gsf.ShowDialog();
+                gsf.ShowDialog(); */
                 int id = count;
                 if (openIds.Count > 0)
                 {
@@ -44,7 +44,7 @@
                 {
                     count++;
                 }
-                return new Song(name[0], path, artist[0], id);
+                return new Song(path, id);
             }
             return null;
         }
@@ -64,7 +64,7 @@
                 title = TagLib.File.Create(path).Tag.Title;
                 if (string.IsNullOrWhiteSpace(title))
                 {
-                    MessageBox.Show("Song file does not have a title! Giving it default title");
+                    MessageBox.Show("Song file does not have a title! Giving it default title.");
                     title = "Untitled Song";
                 }
                 return title;
@@ -82,7 +82,7 @@
                 artist = TagLib.File.Create(path).Tag.FirstAlbumArtist;
                 if (string.IsNullOrWhiteSpace(artist))
                 {
-                    MessageBox.Show("Song file does not have a artist! Giving it default title");
+                    MessageBox.Show("Song file does not have a artist! Giving it default artist.");
                     artist = "Unknown Artist";
                 }
                 return artist;

@@ -6,13 +6,27 @@
         private Song song;
         private Playlist? playlist;
         MusicPlayer player;
+        Task headTask;
         public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
             this.song = song;
             onCreate();
             this.player = player;
+
+            FormClosing += (sender, e) =>
+            {
+                Console.WriteLine("e");
+                SongPlayer.StopSong();
+            };
         }
+
+        ~SongControls()
+        {
+            headTask.Dispose();
+            SongPlayer.StopSong();
+        }
+
         public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
         {
             InitializeComponent();
@@ -92,7 +106,6 @@
             }
         }
 
-
         private void playSongPicBox_Click(object sender, EventArgs e)
         {
             if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
@@ -109,6 +122,30 @@
             {
                 SongPlayer.PlaySong(song);
             }
+            
+            //Place in song is causing problems when trying to update it.
+            //headTask = Task.Run(UpdatePlaybackHead);
+
+            if (SongPlayer.getPlayingSong() != song)
+            {
+                Close();
+            }
+            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
+            {
+                if (false)
+                {
+                    placeInSong.Value = 0;
+                    playSongPicBox_Click(sender, e);
+                }
+                else if (playlist != null && playlistIndex < playlist.getLength())
+                {
+                    nextSongPicBox_Click(sender, e);
+                }
+            }
+        }
+
+        private void UpdatePlaybackHead()
+        {
             while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && SongPlayer.getPlayingSong() == song)
             {
                 Thread.Sleep(100);
@@ -121,27 +158,11 @@
                     placeInSong.Value = placeInSong.Maximum;
                 }
             }
-            if (SongPlayer.getPlayingSong() != song)
-            {
-                Close();
-            }
-            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
-            {
-                if (checkBox1.Checked)
-                {
-                    placeInSong.Value = 0;
-                    playSongPicBox_Click(sender, e);
-                }
-                else if (playlist != null && playlistIndex < playlist.getLength())
-                {
-                    nextSongPicBox_Click(sender, e);
-                }
-            }
         }
 
         private void nextSongPicBox_Click(object sender, EventArgs e)
         {
-            if (playlistIndex == playlist.getLength())
+            if (playlistIndex == playlist.getLength() - 1)
             {
                 playlistIndex = -1;
             }
@@ -159,7 +180,7 @@
                 playlistName.Text = "";
             }
             songName.Text = song.getTitle();
-            artistName.Text = song.getArtist();  
+            artistName.Text = song.getArtist();
         }
 
         private void placeInSong_Scroll(object sender, EventArgs e)

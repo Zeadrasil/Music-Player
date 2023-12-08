@@ -8,6 +8,8 @@
         {
             InitializeComponent();
             this.player = player;
+            player.search("");
+            updateDisplay();
         }
         private void changeForms(Form frm)
         {
@@ -55,13 +57,23 @@
             }
             updateDisplay();
         }
+
+        private void addSongButton_Click(object sender, EventArgs e)
+        {
+            player.addSong();
+            updateDisplay();
+        }
+
         private void updateDisplay()
         {
+            returnedSongs.BeginUpdate();
             returnedSongs.Items.Clear();
+            player.search(searchParameters.Text);
             for (int i = 0; i < player.getActiveSongCount(); i++)
             {
                 returnedSongs.Items.Add(player.getSong(i).getTitle() + " - " + player.getSong(i).getArtist());
             }
+            returnedSongs.EndUpdate();
         }
 
         private void playSelectedSong_Click(object sender, EventArgs e)
@@ -77,6 +89,7 @@
             if (returnedSongs.SelectedIndex != -1)
             {
                 player.getSong(returnedSongs.SelectedIndex).updateName();
+                updateDisplay();
             }
         }
 
@@ -85,6 +98,7 @@
             if (returnedSongs.SelectedIndex != -1)
             {
                 player.getSong(returnedSongs.SelectedIndex).updateArtist();
+                updateDisplay();
             }
         }
 
