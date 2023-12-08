@@ -74,12 +74,12 @@ namespace Music_Player
                 {
                     if (player.getPlaylist(playlistPicker.SelectedIndex).contains(player.getSong(i)))
                     {
-                        songsInPlaylist.Items.Add(player.getSong(i).getTitle + " - " + player.getSong(i).getArtist());
+                        songsInPlaylist.Items.Add(player.getSong(i).getTitle() + " - " + player.getSong(i).getArtist());
                         inPlaylist.Add(player.getSong(i).getId());
                     }
                     else
                     {
-                        songsNotInPlaylist.Items.Add(player.getSong(i).getTitle + " - " + player.getSong(i).getArtist());
+                        songsNotInPlaylist.Items.Add(player.getSong(i).getTitle() + " - " + player.getSong(i).getArtist());
                         outPlaylist.Add(player.getSong(i).getId());
                     }
                 }
@@ -120,7 +120,7 @@ namespace Music_Player
 
         private void playPlaylist_Click(object sender, EventArgs e)
         {
-            if (playlistPicker.SelectedIndex != -1)
+            if (playlistPicker.SelectedIndex != -1 && songsInPlaylist.SelectedIndex != -1)
             {
                 if (shuffle.Checked) player.getPlaylist(playlistPicker.SelectedIndex).shuffle();
                 if (songsInPlaylist.SelectedIndex == -1)
@@ -147,6 +147,8 @@ namespace Music_Player
             if (playlistPicker.SelectedIndex != -1)
             {
                 player.removePlaylist(playlistPicker.SelectedIndex);
+                playlistPicker.Items.RemoveAt(playlistPicker.SelectedIndex);
+                playlistPicker.Text = "";
             }
         }
 

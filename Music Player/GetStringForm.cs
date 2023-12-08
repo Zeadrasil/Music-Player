@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,14 @@ namespace Music_Player
             result = original;
             InitializeComponent();
             initialize(message);
+
+            FormClosing += (sender, e) =>
+            {
+                if (CheckEmpty())
+                    e.Cancel = true;
+
+                SetResult();
+            };
         }
         private void initialize(string message)
         {
@@ -31,8 +40,14 @@ namespace Music_Player
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            result[0] = textBox.Text;
+            if (CheckEmpty())
+                return;
             this.Close();
+        }
+
+        private void SetResult()
+        {
+            result[0] = textBox.Text;
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
@@ -41,6 +56,16 @@ namespace Music_Player
             {
                 confirmButton_Click(sender, e);
             }
+        }
+
+        private bool CheckEmpty()
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                MessageBox.Show("You must enter something! Whitespace does not count!");
+                return true;
+            }
+            return false;
         }
     }
 }

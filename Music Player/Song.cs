@@ -73,7 +73,10 @@ namespace Music_Player
             {
                 title = TagLib.File.Create(path).Tag.Title;
                 if (string.IsNullOrWhiteSpace(title))
-                    throw new Exception($"\"{path}\" does not have a valid title!");
+                {
+                    MessageBox.Show("Song file does not have a title! Giving it default title");
+                    title = "Untitled Song";
+                }
                 return title;
             }
             return title;
@@ -87,8 +90,11 @@ namespace Music_Player
             if (string.IsNullOrWhiteSpace(artist))
             {
                 artist = TagLib.File.Create(path).Tag.FirstAlbumArtist;
-                if (string.IsNullOrWhiteSpace(title))
-                    throw new Exception($"\"{path}\" does not have a valid artist!");
+                if (string.IsNullOrWhiteSpace(artist))
+                {
+                    MessageBox.Show("Song file does not have a artist! Giving it default title");
+                    artist = "Unknown Artist";
+                }
                 return artist;
             }
             return artist;
@@ -97,7 +103,7 @@ namespace Music_Player
         public void updateName()
         {
             string[] temp = new string[1];
-            temp[0] = title;
+            temp[0] = getTitle();
             GetStringForm gsf = new GetStringForm("New name for " + title + ":", ref temp);
             gsf.ShowDialog();
             title = temp[0];
@@ -105,7 +111,7 @@ namespace Music_Player
         public void updateArtist()
         {
             string[] temp = new string[1];
-            temp[0] = artist;
+            temp[0] = getArtist();
             GetStringForm gsf = new GetStringForm("New artist for " + title + ":", ref temp);
             gsf.ShowDialog();
             artist = temp[0];

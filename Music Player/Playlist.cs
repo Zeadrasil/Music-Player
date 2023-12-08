@@ -23,29 +23,29 @@ namespace Music_Player
             songOrder = new List<int>();
         }
 
-        public static Playlist? createPlaylist()
+        public static Playlist createPlaylist()
         {
             string[] name = new string[1];
             name[0] = "";
-            GetStringForm gsf = new GetStringForm("What is the name of the new playlist?", ref name);
-            gsf.ShowDialog();
-            if (name[0] != "")
+            do
             {
-                int id = count;
-                if(openIds.Count > 0)
-                {
-                    id = openIds[0];
-                    openIds.RemoveAt(0);
-                }
-                return new Playlist(name[0], id);
+                GetStringForm gsf = new GetStringForm("What is the name of the new playlist?", ref name);
+                gsf.ShowDialog();
+            } while (string.IsNullOrWhiteSpace(name[0]));
+
+            int id = count;
+            if (openIds.Count > 0)
+            {
+                id = openIds[0];
+                openIds.RemoveAt(0);
             }
-            return null;
+            return new Playlist(name[0], id);
         }
         public void shuffle()
         {
             Random random = new Random();
             List<int> newOrder = songOrder.ToList();
-            for(int i = 0; i < songOrder.Count; i++) 
+            for (int i = 0; i < songOrder.Count; i++)
             {
                 newOrder.Remove(i);
                 newOrder.Insert(random.Next(songOrder.Count), i);
@@ -65,9 +65,9 @@ namespace Music_Player
 
         public bool addSong(Song song)
         {
-            if(!songs.Contains(song)) 
-            { 
-                if(shuffled)
+            if (!songs.Contains(song))
+            {
+                if (shuffled)
                 {
                     unShuffle();
                 }
@@ -78,9 +78,9 @@ namespace Music_Player
             }
             return false;
         }
-        public bool removeSong(Song song) 
-        { 
-            if(songs.Contains(song))
+        public bool removeSong(Song song)
+        {
+            if (songs.Contains(song))
             {
                 song.removePlaylist(this);
                 return true;
@@ -95,7 +95,7 @@ namespace Music_Player
 
         public void delete()
         {
-            foreach(Song song in songs)
+            foreach (Song song in songs)
             {
                 song.removePlaylist(this);
             }

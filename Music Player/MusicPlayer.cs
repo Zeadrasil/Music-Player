@@ -28,14 +28,14 @@ namespace Music_Player
                 if (openFile.ShowDialog() == DialogResult.OK)
                 {
                     StreamReader sr = new StreamReader(openFile.FileName);
-                    Song.setCount(int.Parse(sr.ReadLine()));
+                    Song.setCount(int.Parse(sr.ReadLine()!));
                     int lastId = -1;
-                    string holder = sr.ReadLine();
+                    string holder = sr.ReadLine()!;
                     while(holder != "??PLAYLISTS??" && !sr.EndOfStream)
                     {
-                        string name = sr.ReadLine();
-                        string artist = sr.ReadLine();
-                        int id = int.Parse(sr.ReadLine());
+                        string name = sr.ReadLine()!;
+                        string artist = sr.ReadLine()!;
+                        int id = int.Parse(sr.ReadLine()!);
                         newSongs.Add(new Song(name, holder, artist, id));
                         while(id - lastId > 1)
                         {
@@ -43,21 +43,21 @@ namespace Music_Player
                             Song.addUnusedId(lastId);
                         }
                         lastId++;
-                        holder = sr.ReadLine();
+                        holder = sr.ReadLine()!;
                     }
                     if(!sr.EndOfStream)
                     {
-                        Playlist.setCount(int.Parse(sr.ReadLine()));
+                        Playlist.setCount(int.Parse(sr.ReadLine()!));
                         lastId = -1;
                         while(!sr.EndOfStream)
                         {
-                            string name = sr.ReadLine();
-                            int id = int.Parse(sr.ReadLine());
+                            string name = sr.ReadLine()!;
+                            int id = int.Parse(sr.ReadLine()!);
                             Playlist playlist = new Playlist(name, id);
-                            int count = int.Parse(sr.ReadLine());
+                            int count = int.Parse(sr.ReadLine()!);
                             for(int i = 0; i < count; i++)
                             {
-                                playlist.addSong(getSong(getTrueIndex(int.Parse(sr.ReadLine()))));
+                                playlist.addSong(getSong(getTrueIndex(int.Parse(sr.ReadLine()!))));
                             }
                         }
                     }
@@ -202,7 +202,7 @@ namespace Music_Player
         }
         public bool addPlaylist()
         {
-            Playlist? playlist = Playlist.createPlaylist();
+            Playlist playlist = Playlist.createPlaylist();
             if(playlist != null)
             {
                 playlists.Insert(playlist.getId(), playlist);

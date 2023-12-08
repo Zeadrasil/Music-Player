@@ -196,7 +196,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
-            Controls.Add(changePlaylistName);
+            //Controls.Add(changePlaylistName);
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);
             Controls.Add(createPlaylist);

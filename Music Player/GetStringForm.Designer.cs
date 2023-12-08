@@ -52,7 +52,8 @@
             label.ForeColor = SystemColors.ButtonFace;
             label.Location = new Point(12, 9);
             label.Name = "label";
-            label.Size = new Size(479, 38);
+            //label.Size = new Size(479, 38);
+            label.AutoSize = true;
             label.TabIndex = 1;
             label.Text = "Enter new song name here";
             label.TextAlign = ContentAlignment.MiddleCenter;
@@ -67,6 +68,7 @@
             cancelButton.TabIndex = 2;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = false;
+            cancelButton.Click += cancelButton_Click;
             // 
             // confirmButton
             // 
