@@ -109,5 +109,19 @@
                 player.getSong(returnedSongs.SelectedIndex).updatePath();
             }
         }
+
+
+        private void removeSongButton_Click(object sender, EventArgs e)
+        {
+            if (returnedSongs.SelectedIndex != -1)
+            {
+                player.removeSong(returnedSongs.SelectedIndex);
+            }
+        }
+
+        private void homePageButton_Click(object sender, EventArgs e)
+        {
+            changeForms(new HomePage());
+        }
     }
 }

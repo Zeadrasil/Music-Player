@@ -93,10 +93,9 @@
         {
             try
             {
-                int trueIndex = getTrueIndex(index);
-                songs[trueIndex].delete();
-                searchedSongs.Remove(songs[trueIndex]);
-                songs.RemoveAt(trueIndex);
+                searchedSongs[index].delete();
+                songs.Remove(searchedSongs[index]);
+                searchedSongs.RemoveAt(index);
                 return true;
             }
             catch (Exception ex) 
@@ -108,7 +107,7 @@
 
         public void play(int index)
         {
-            SongPlayer.PlaySong(songs[getTrueIndex(index)]);
+            SongPlayer.PlaySong(searchedSongs[index]);
         }
 
         private int getTrueIndex(int index)

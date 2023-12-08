@@ -25,15 +25,15 @@
             openFileDialog.Filter = "Audio Files |*.mp3||*.FLAC||*.AAC||*.WMA||*.AC3||*.PCM||*.GSM||*.wav";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string[] name = new string[1];
-                name[0] = openFileDialog.FileName.Split('/').Last();
                 string path = openFileDialog.FileName;
-                /* string[] artist = new string[1];
-                artist[0] = "";
+                string[] name = new string[1];
+                name[0] = TagLib.File.Create(path).Tag.Title;
+                string[] artist = new string[1];
+                artist[0] = TagLib.File.Create(path).Tag.FirstPerformer; ;
                 GetStringForm gsf = new GetStringForm("Please enter the song name", ref name);
                 gsf.ShowDialog();
                 gsf = new GetStringForm("Please enter the artist name", ref artist);
-                gsf.ShowDialog(); */
+                gsf.ShowDialog();
                 int id = count;
                 if (openIds.Count > 0)
                 {
@@ -67,7 +67,6 @@
                     MessageBox.Show("Song file does not have a title! Giving it default title.");
                     title = "Untitled Song";
                 }
-                return title;
             }
             return title;
         }

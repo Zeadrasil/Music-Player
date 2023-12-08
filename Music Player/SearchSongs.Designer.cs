@@ -38,6 +38,9 @@
             changeName = new Button();
             changeArtist = new Button();
             changeFilePath = new Button();
+            removeSongButton = new Button();
+            homePageButton = new Button();
+            addSongButton = new Button();
             ((System.ComponentModel.ISupportInitialize)playSelectedSong).BeginInit();
             SuspendLayout();
             // 
@@ -46,9 +49,9 @@
             SearchPlaylistButton.BackColor = SystemColors.ActiveCaptionText;
             SearchPlaylistButton.ForeColor = SystemColors.ButtonFace;
             SearchPlaylistButton.ImageAlign = ContentAlignment.TopCenter;
-            SearchPlaylistButton.Location = new Point(346, 357);
+            SearchPlaylistButton.Location = new Point(572, 294);
             SearchPlaylistButton.Name = "SearchPlaylistButton";
-            SearchPlaylistButton.Size = new Size(129, 34);
+            SearchPlaylistButton.Size = new Size(145, 34);
             SearchPlaylistButton.TabIndex = 9;
             SearchPlaylistButton.Text = "Playlists";
             SearchPlaylistButton.UseVisualStyleBackColor = false;
@@ -98,9 +101,9 @@
             // 
             changeName.BackColor = SystemColors.ActiveCaptionText;
             changeName.ForeColor = SystemColors.ButtonFace;
-            changeName.Location = new Point(107, 12);
+            changeName.Location = new Point(112, 12);
             changeName.Name = "changeName";
-            changeName.Size = new Size(134, 34);
+            changeName.Size = new Size(140, 34);
             changeName.TabIndex = 16;
             changeName.Text = "Change Name";
             changeName.UseVisualStyleBackColor = false;
@@ -110,9 +113,9 @@
             // 
             changeArtist.BackColor = SystemColors.ActiveCaptionText;
             changeArtist.ForeColor = SystemColors.ButtonFace;
-            changeArtist.Location = new Point(346, 12);
+            changeArtist.Location = new Point(340, 12);
             changeArtist.Name = "changeArtist";
-            changeArtist.Size = new Size(129, 34);
+            changeArtist.Size = new Size(140, 34);
             changeArtist.TabIndex = 17;
             changeArtist.Text = "Change Artist";
             changeArtist.UseVisualStyleBackColor = false;
@@ -122,14 +125,52 @@
             // 
             changeFilePath.BackColor = SystemColors.ActiveCaptionText;
             changeFilePath.ForeColor = SystemColors.ButtonFace;
-            changeFilePath.Location = new Point(588, 12);
+            changeFilePath.Location = new Point(572, 12);
             changeFilePath.Name = "changeFilePath";
-            changeFilePath.Size = new Size(129, 34);
+            changeFilePath.Size = new Size(145, 34);
             changeFilePath.TabIndex = 18;
             changeFilePath.Text = "Change File";
             changeFilePath.UseVisualStyleBackColor = false;
-            changeFilePath.Click += addSongButton_Click;
-            //changeFilePath.Click += changeFilePath_Click;
+            changeFilePath.Click += changeFilePath_Click;
+            // 
+            // removeSongButton
+            // 
+            removeSongButton.BackColor = SystemColors.ActiveCaptionText;
+            removeSongButton.ForeColor = SystemColors.ButtonFace;
+            removeSongButton.ImageAlign = ContentAlignment.TopCenter;
+            removeSongButton.Location = new Point(112, 371);
+            removeSongButton.Name = "removeSongButton";
+            removeSongButton.Size = new Size(140, 34);
+            removeSongButton.TabIndex = 20;
+            removeSongButton.Text = "Remove Song";
+            removeSongButton.UseVisualStyleBackColor = false;
+            removeSongButton.Click += removeSongButton_Click;
+            // 
+            // homePageButton
+            // 
+            homePageButton.BackColor = SystemColors.ActiveCaptionText;
+            homePageButton.ForeColor = SystemColors.ButtonFace;
+            homePageButton.ImageAlign = ContentAlignment.TopCenter;
+            homePageButton.Location = new Point(572, 371);
+            homePageButton.Name = "homePageButton";
+            homePageButton.Size = new Size(145, 34);
+            homePageButton.TabIndex = 21;
+            homePageButton.Text = "Home";
+            homePageButton.UseVisualStyleBackColor = false;
+            homePageButton.Click += homePageButton_Click;
+            // 
+            // addSongButton
+            // 
+            addSongButton.BackColor = SystemColors.ActiveCaptionText;
+            addSongButton.ForeColor = SystemColors.ButtonFace;
+            addSongButton.ImageAlign = ContentAlignment.TopCenter;
+            addSongButton.Location = new Point(112, 294);
+            addSongButton.Name = "addSongButton";
+            addSongButton.Size = new Size(140, 34);
+            addSongButton.TabIndex = 19;
+            addSongButton.Text = "Add Song";
+            addSongButton.UseVisualStyleBackColor = false;
+            addSongButton.Click += addSongButton_Click;
             // 
             // SearchSongs
             // 
@@ -137,6 +178,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(homePageButton);
+            Controls.Add(removeSongButton);
+            Controls.Add(addSongButton);
             Controls.Add(changeFilePath);
             Controls.Add(changeArtist);
             Controls.Add(changeName);
@@ -160,5 +204,8 @@
         private Button changeName;
         private Button changeArtist;
         private Button changeFilePath;
+        private Button removeSongButton;
+        private Button homePageButton;
+        private Button addSongButton;
     }
 }
