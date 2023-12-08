@@ -53,6 +53,8 @@
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "play.png");
             imageList1.Images.SetKeyName(1, "pause.png");
+            imageList1.Images.SetKeyName(2, "next.png");
+            imageList1.Images.SetKeyName(3, "previous.png");
             // 
             // songArt
             // 
@@ -151,8 +153,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
-            //Controls.Add(placeInSong);
-            //Controls.Add(checkBox1);
             Controls.Add(playlistName);
             Controls.Add(artistName);
             Controls.Add(songName);
@@ -169,7 +169,6 @@
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)placeInSong).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

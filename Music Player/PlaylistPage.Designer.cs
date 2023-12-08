@@ -61,8 +61,9 @@
             // imageList1
             // 
             imageList1.ColorDepth = ColorDepth.Depth8Bit;
-            imageList1.ImageSize = new Size(16, 16);
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "play.png");
             // 
             // removeSongButton
             // 
@@ -174,7 +175,7 @@
             shuffle.ForeColor = SystemColors.ButtonFace;
             shuffle.Location = new Point(352, 129);
             shuffle.Name = "shuffle";
-            shuffle.Size = new Size(91, 29);
+            shuffle.Size = new Size(93, 29);
             shuffle.TabIndex = 22;
             shuffle.Text = "Shuffle";
             shuffle.UseVisualStyleBackColor = false;
@@ -196,7 +197,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
-            //Controls.Add(changePlaylistName);
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);
             Controls.Add(createPlaylist);
