@@ -11,8 +11,9 @@ namespace Music_Player
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new HomePage());
-            SongPlayer.CloseApp();
+            MusicPlayer player = new MusicPlayer();
+            Application.Run(new HomePage(ref player));
+            player.getSongPlayer().CloseApp();
         }
     }
 }

@@ -38,6 +38,7 @@
             songName = new Label();
             artistName = new Label();
             playlistName = new Label();
+            checkBox1 = new CheckBox();
             placeInSong = new TrackBar();
             ((System.ComponentModel.ISupportInitialize)songArt).BeginInit();
             ((System.ComponentModel.ISupportInitialize)previousSongPicBox).BeginInit();
@@ -134,14 +135,27 @@
             playlistName.Text = "Playlist Name";
             playlistName.TextAlign = ContentAlignment.TopCenter;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.BackColor = SystemColors.ActiveCaptionText;
+            checkBox1.ForeColor = SystemColors.ButtonFace;
+            checkBox1.Location = new Point(343, 409);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(121, 29);
+            checkBox1.TabIndex = 17;
+            checkBox1.Text = "checkBox1";
+            checkBox1.UseVisualStyleBackColor = false;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // placeInSong
             // 
             placeInSong.AutoSize = false;
             placeInSong.BackColor = SystemColors.ActiveCaptionText;
             placeInSong.Cursor = Cursors.NoMoveHoriz;
-            placeInSong.Location = new Point(300, 256);
+            placeInSong.Location = new Point(25, 256);
             placeInSong.Name = "placeInSong";
-            placeInSong.Size = new Size(200, 20);
+            placeInSong.Size = new Size(750, 20);
             placeInSong.TabIndex = 18;
             placeInSong.TickFrequency = 0;
             placeInSong.TickStyle = TickStyle.None;
@@ -153,6 +167,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(placeInSong);
+            Controls.Add(checkBox1);
             Controls.Add(playlistName);
             Controls.Add(artistName);
             Controls.Add(songName);
@@ -182,5 +198,6 @@
         private Label artistName;
         private Label playlistName;
         private TrackBar placeInSong;
+        private CheckBox checkBox1;
     }
 }

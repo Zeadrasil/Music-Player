@@ -4,30 +4,30 @@ using CSCore.SoundOut;
 
 namespace Music_Player
 {
-    internal static class SongPlayer
+    public partial class SongPlayer
     {
-        private readonly static ISoundOut soundOut = new WasapiOut() { Latency = 100 };
-        private static Song? playingSong;
+        private readonly  ISoundOut soundOut = new WasapiOut() { Latency = 100 };
+        private  Song? playingSong;
 
-        public static void StopSong()
+        public  void StopSong()
         {
             soundOut.Stop();
             soundOut.WaveSource?.Dispose();
             playingSong = null;
         }
 
-        public static void CloseApp()
+        public  void CloseApp()
         {
             StopSong();
             soundOut.Dispose();
         }
 
-        public static void PauseSong()
+        public  void PauseSong()
         {
             soundOut.Pause();
         }
 
-        public static void ResumeSong()
+        public  void ResumeSong()
         {
             soundOut.Resume();
         }
@@ -37,7 +37,7 @@ namespace Music_Player
         /// <param name="time">The time to seek to</param>
         /// <exception cref="NotPlayingAudio"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void SeekToTime(TimeSpan time)
+        public  void SeekToTime(TimeSpan time)
         {
             if (soundOut.PlaybackState == PlaybackState.Stopped)
                 throw new Exception("Tried to seek to time when music was stopped!");
@@ -53,7 +53,7 @@ namespace Music_Player
         /// <param name="time">The time to seek to</param>
         /// <exception cref="NotPlayingAudio"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void SeekToTimeSec(double seconds)
+        public  void SeekToTimeSec(double seconds)
         {
             SeekToTime(TimeSpan.FromSeconds(seconds));
         }
@@ -64,7 +64,7 @@ namespace Music_Player
         /// <param name="time">The time to seek to</param>
         /// <exception cref="NotPlayingAudio"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static void SeekToTimeMS(int milliseconds)
+        public  void SeekToTimeMS(int milliseconds)
         {
             SeekToTime(TimeSpan.FromMilliseconds(milliseconds));
         }
@@ -75,7 +75,7 @@ namespace Music_Player
         /// <param name="volume"></param>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <param name="volume">The volume to set</param>
-        public static void SetVolume(float volume)
+        public  void SetVolume(float volume)
         {
             if (volume > 1.0f || volume < 0.0f)
                 throw new ArgumentOutOfRangeException("Volume must be greater than or equal to zero and less than or equal to 1! Was => " + volume);
@@ -88,7 +88,7 @@ namespace Music_Player
         /// </summary>
         /// <exception cref="ArgumentNullException"></exception> 
         /// <param name="song">The song to play</param>
-        public static void PlaySong(Song song)
+        public  void PlaySong(Song song)
         {
             if (song == null)
                 throw new ArgumentNullException(nameof(song));
@@ -109,18 +109,22 @@ namespace Music_Player
             }
         }
 
-        public static PlaybackState GetPlaybackState()
+        public  PlaybackState GetPlaybackState()
         {
             return soundOut.PlaybackState;
         }
 
-        public static Song? getPlayingSong()
+        public  Song? getPlayingSong()
         {
             return playingSong;
         }
-        public static int getLength()
+        public  int getLength()
         {
-            return Extensions.GetLength(soundOut.WaveSource).Milliseconds;
+            return (int)Extensions.GetLength(soundOut.WaveSource).TotalMilliseconds;
+        }
+        public  int getPosition()
+        {
+            return (int)Extensions.GetPosition(soundOut.WaveSource).TotalMilliseconds;
         }
     }
 }

@@ -5,11 +5,13 @@
         private List<Song> songs;
         private List<Song> searchedSongs;
         private List<Playlist> playlists;
+        private SongPlayer songPlayer;
         public MusicPlayer()
         {
             songs = new List<Song>();
             searchedSongs = new List<Song>();
             playlists = new List<Playlist>();
+            songPlayer = new SongPlayer();
         }
 
         public bool load()
@@ -107,7 +109,7 @@
 
         public void play(int index)
         {
-            SongPlayer.PlaySong(searchedSongs[index]);
+            songPlayer.PlaySong(searchedSongs[index]);
         }
 
         private int getTrueIndex(int index)
@@ -190,7 +192,7 @@
 
         public void play(int playlistIndex, int startIndex)
         {
-            playlists[playlistIndex].play(startIndex);
+            songPlayer.PlaySong(playlists[playlistIndex].getOrderedSong(startIndex));
         }
         public Song getSong(int playlistIndex, int songIndex)
         {
@@ -228,6 +230,10 @@
         public int getPlaylistCount()
         {
             return playlists.Count;
+        }
+        public SongPlayer getSongPlayer()
+        {
+            return songPlayer;
         }
     }
 }

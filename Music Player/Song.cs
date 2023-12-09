@@ -44,7 +44,7 @@
                 {
                     count++;
                 }
-                return new Song(path, id);
+                return new Song(name[0], path, artist[0], id);
             }
             return null;
         }

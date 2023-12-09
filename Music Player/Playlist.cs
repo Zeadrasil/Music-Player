@@ -82,10 +82,6 @@
             return false;
         }
 
-        public void play(int index)
-        {
-            SongPlayer.PlaySong(songs[songOrder[index]]);
-        }
 
         public void delete()
         {
@@ -103,6 +99,10 @@
         public Song getSong(int index)
         {
             return songs[index];
+        }
+        public Song getOrderedSong(int index)
+        {
+            return songs[songOrder[index]];
         }
         public int getId()
         {

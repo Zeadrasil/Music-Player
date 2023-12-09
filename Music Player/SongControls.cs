@@ -1,4 +1,6 @@
-﻿namespace Music_Player
+﻿using System.Collections.Concurrent;
+
+namespace Music_Player
 {
     public partial class SongControls : Form
     {
@@ -6,18 +8,22 @@
         private Song song;
         private Playlist? playlist;
         MusicPlayer player;
-        //Task headTask;
+        ConcurrentDictionary<int, int> slider;
+        ConcurrentDictionary<int, bool> loop;
+        Task headTask;
         public SongControls(Song song, ref MusicPlayer player)
         {
             InitializeComponent();
             this.song = song;
-            onCreate();
             this.player = player;
+            slider = new ConcurrentDictionary<int, int>();
+            loop = new ConcurrentDictionary<int, bool>();
+            onCreate();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            SongPlayer.StopSong();
+            player.getSongPlayer().StopSong();
             base.OnFormClosing(e);
         }
 
@@ -28,6 +34,8 @@
             this.playlistIndex = playlistIndex;
             this.playlist = playlist;
             this.player = player;
+            slider = new ConcurrentDictionary<int, int>();
+            loop = new ConcurrentDictionary<int, bool>();
             onCreate();
         }
         private void onCreate()
@@ -41,26 +49,12 @@
             }
             else
             {
-                if (playlistIndex == 0)
-                {
-                    previousSongPicBox.Hide();
-                    previousSongPicBox.Enabled = false;
-                }
-                else if (playlistIndex == playlist.getLength())
-                {
-                    nextSongPicBox.Hide();
-                    nextSongPicBox.Enabled = false;
-                }
                 song = playlist.getSong(playlistIndex);
             }
-            SongPlayer.StopSong();
-            SongPlayer.PlaySong(song);
-            playSongPicBox.Image = imageList1.Images[1];
-            placeInSong.Maximum = SongPlayer.getLength() / 100;
         }
         private void changeForms(Form frm)
         {
-            SongPlayer.StopSong();
+            player.getSongPlayer().StopSong();
             frm.Location = this.Location;
             frm.StartPosition = FormStartPosition.Manual;
             //frm.FormClosing += delegate { this.Show(); };
@@ -93,7 +87,7 @@
         {
             if (playlistIndex == 0)
             {
-                changeForms(new SongControls(playlist, playlist.getLength() - 1, ref player));
+                changeForms(new SongControls(playlist, playlist.getLength(), ref player));
             }
             else
             {
@@ -103,57 +97,29 @@
 
         private void playSongPicBox_Click(object sender, EventArgs e)
         {
-            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
+            if (player.getSongPlayer().GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing)
             {
-                SongPlayer.PauseSong();
+                player.getSongPlayer().PauseSong();
                 playSongPicBox.Image = imageList1.Images[0];
             }
-            else if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Paused)
+            else if (player.getSongPlayer().GetPlaybackState() == CSCore.SoundOut.PlaybackState.Paused)
             {
-                SongPlayer.ResumeSong();
+                player.getSongPlayer().ResumeSong();
                 playSongPicBox.Image = imageList1.Images[1];
+                headTask = new Task(updateHead);
+                headTask.Start();
             }
             else
             {
-                SongPlayer.PlaySong(song);
-            }
-
-            //Place in song is causing problems when trying to update it.
-            //headTask = Task.Run(UpdatePlaybackHead);
-
-            if (SongPlayer.getPlayingSong() != song)
-            {
-                Close();
-            }
-            if (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Stopped)
-            {
-                if (false)
-                {
-                    placeInSong.Value = 0;
-                    playSongPicBox_Click(sender, e);
-                }
-                else if (playlist != null && playlistIndex < playlist.getLength())
-                {
-                    nextSongPicBox_Click(sender, e);
-                }
+                player.getSongPlayer().PlaySong(song);
+                placeInSong.Maximum = player.getSongPlayer().getLength();
+                placeInSong.SmallChange = (int) (placeInSong.Maximum * 0.05f);
+                placeInSong.LargeChange = (int)(placeInSong.Maximum * 0.2f);
+                headTask = new Task(updateHead);
+                headTask.Start();
             }
         }
 
-        private void UpdatePlaybackHead()
-        {
-            while (SongPlayer.GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && SongPlayer.getPlayingSong() == song)
-            {
-                Thread.Sleep(100);
-                if (placeInSong.Value + 1 <= placeInSong.Maximum)
-                {
-                    placeInSong.Value++;
-                }
-                else
-                {
-                    placeInSong.Value = placeInSong.Maximum;
-                }
-            }
-        }
 
         private void nextSongPicBox_Click(object sender, EventArgs e)
         {
@@ -176,11 +142,80 @@
             }
             songName.Text = song.getTitle();
             artistName.Text = song.getArtist();
+            slider.TryAdd(0, placeInSong.Value);
+            loop.TryAdd(0, checkBox1.Checked);
+            playSongPicBox_Click(sender, e);
+        }
+
+        private void updateHead()
+        {
+            try
+            {
+                int bar;
+                while (player.getSongPlayer().getPosition() < player.getSongPlayer().getLength() && player.getSongPlayer().GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && player.getSongPlayer().getPlayingSong() == song)
+                {
+                    slider.TryGetValue(0, out bar);
+                    Thread.Sleep(200);
+                    if (Math.Abs(player.getSongPlayer().getPosition() - bar) > 300)
+                    {
+                        player.getSongPlayer().SeekToTimeMS(bar);
+                    }
+                    placeInSong.Invoke(updatePlace, player.getSongPlayer().getPosition());
+                }
+                if (player.getSongPlayer().getPlayingSong() != song)
+                {
+                    Close();
+                }
+                if (player.getSongPlayer().GetPlaybackState() != CSCore.SoundOut.PlaybackState.Paused)
+                {
+                    bool looping;
+                    loop.TryGetValue(0, out looping);
+                    if (looping)
+                    {
+                        placeInSong.Invoke(updatePlace, 0);
+                        player.getSongPlayer().PauseSong();
+                        playSongPicBox_Click(null, null);
+                    }
+                    else if (playlist != null && playlistIndex < playlist.getLength())
+                    {
+                        nextSongPicBox_Click(null, null);
+                    }
+                    else
+                    {
+                        placeInSong.Invoke(close, 0);
+                    }
+                }
+            }
+            catch(ObjectDisposedException)
+            {
+
+            }
+        }
+
+        private void updatePlace(int place)
+        {
+            int update;
+            slider.TryGetValue(0, out update);
+            slider.TryUpdate(0, place, update);
+            placeInSong.Value = place;
         }
 
         private void placeInSong_Scroll(object sender, EventArgs e)
         {
-            SongPlayer.SeekToTimeMS(placeInSong.Value * 100);
+            int old;
+            slider.TryGetValue(0, out old);
+            slider.TryUpdate(0, placeInSong.Value, old);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            bool old;
+            loop.TryGetValue(0, out old);
+            loop.TryUpdate(0, checkBox1.Checked, old);
+        }
+        private void close(int useless)
+        {
+            this.Close();
         }
     }
 }
