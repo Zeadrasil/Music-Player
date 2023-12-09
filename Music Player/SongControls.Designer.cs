@@ -185,6 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)nextSongPicBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)placeInSong).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
