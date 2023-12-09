@@ -41,7 +41,9 @@
                         lastId++;
                         holder = sr.ReadLine()!;
                     }
-                    if(!sr.EndOfStream)
+                    songs = newSongs;
+                    List<Playlist> newPlaylists = new List<Playlist>();
+                    if (!sr.EndOfStream)
                     {
                         Playlist.setCount(int.Parse(sr.ReadLine()!));
                         lastId = -1;
@@ -49,15 +51,21 @@
                         {
                             string name = sr.ReadLine()!;
                             int id = int.Parse(sr.ReadLine()!);
+                            while(id - lastId > 1)
+                            {
+                                Playlist.addUnusedId(lastId + 1);
+                                lastId++;
+                            }
                             Playlist playlist = new Playlist(name, id);
                             int count = int.Parse(sr.ReadLine()!);
                             for(int i = 0; i < count; i++)
                             {
-                                playlist.addSong(getSong(getTrueIndex(int.Parse(sr.ReadLine()!))));
+                                playlist.addSong(songs[getTrueIndex(int.Parse(sr.ReadLine()!))]);
                             }
+                            newPlaylists.Add(playlist);
                         }
+                        playlists = newPlaylists;
                     }
-                    songs = newSongs;
                     clearSearch();
                     sr.Close();
                     return true;
@@ -160,6 +168,7 @@
                         sw.WriteLine(song.getId());
                     }
                     sw.WriteLine("??PLAYLISTS??");
+                    sw.WriteLine(Playlist.getCount());
                     foreach(Playlist playlist in playlists)
                     {
                         sw.WriteLine(playlist.getName());
@@ -196,7 +205,11 @@
         }
         public Song getSong(int playlistIndex, int songIndex)
         {
-            return playlists[playlistIndex].getSong(songIndex);
+            return playlists[playlistIndex].getOrderedSong(songIndex);
+        }
+        public bool searchContains(Song song)
+        {
+            return searchedSongs.Contains(song);
         }
         public bool addPlaylist()
         {

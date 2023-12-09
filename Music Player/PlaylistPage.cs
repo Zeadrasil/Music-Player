@@ -6,6 +6,7 @@
         string lastTerm = "";
         List<int> inPlaylist = new List<int>();
         List<int> outPlaylist = new List<int>();
+        List<int> localIndex = new List<int>();
         public PlaylistPage(ref MusicPlayer player)
         {
             InitializeComponent();
@@ -76,6 +77,13 @@
                         outPlaylist.Add(player.getSong(i).getId());
                     }
                 }
+                for(int i = 0; i < player.getPlaylist(playlistPicker.SelectedIndex).getLength(); i++)
+                {
+                    if(player.searchContains(player.getPlaylist(playlistPicker.SelectedIndex).getSong(i)))
+                    {
+                        localIndex.Add(i);
+                    }
+                }
             }
             songsInPlaylist.SelectedIndex = -1;
             songsNotInPlaylist.SelectedIndex = -1;
@@ -101,7 +109,7 @@
         {
             if (playlistPicker.SelectedIndex != -1 && songsInPlaylist.SelectedIndex != -1)
             {
-                player.getPlaylist(playlistPicker.SelectedIndex).removeSong(player.getSong(inPlaylist[songsInPlaylist.SelectedIndex]));
+                player.getPlaylist(playlistPicker.SelectedIndex).removeSong(player.getSong(localIndex[songsInPlaylist.SelectedIndex]));
                 updateDisplays();
             }
         }
@@ -126,7 +134,7 @@
                 }
                 else
                 {
-                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), player.getPlaylist(playlistPicker.SelectedIndex).getRelativeIndex(inPlaylist[songsInPlaylist.SelectedIndex]), ref player).Show();
+                    new SongControls(player.getPlaylist(playlistPicker.SelectedIndex), player.getPlaylist(playlistPicker.SelectedIndex).getRelativeIndex(localIndex[songsInPlaylist.SelectedIndex]), ref player).Show();
                 }
             }
         }
@@ -155,6 +163,11 @@
             {
                 playlistPicker.Items.Add(player.getPlaylist(i).getName());
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            changeForms(new HomePage(ref player));
         }
     }
 }

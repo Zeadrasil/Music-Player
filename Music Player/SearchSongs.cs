@@ -116,6 +116,7 @@
             if (returnedSongs.SelectedIndex != -1)
             {
                 player.removeSong(returnedSongs.SelectedIndex);
+                updateDisplay();
             }
         }
 

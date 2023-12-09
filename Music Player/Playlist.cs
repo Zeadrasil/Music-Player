@@ -77,6 +77,8 @@
             if (songs.Contains(song))
             {
                 song.removePlaylist(this);
+                songOrder.Remove(songs.IndexOf(song));
+                songs.Remove(song);
                 return true;
             }
             return false;
@@ -127,6 +129,14 @@
         public int getRelativeIndex(int index)
         {
             return songOrder.IndexOf(index);
+        }
+        public static int getCount()
+        {
+            return count;
+        }
+        public static void addUnusedId(int id)
+        {
+            openIds.Add(id);
         }
     }
 }

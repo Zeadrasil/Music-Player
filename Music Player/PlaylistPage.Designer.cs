@@ -43,6 +43,7 @@
             removePlaylist = new Button();
             shuffle = new CheckBox();
             changePlaylistName = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)playPlaylist).BeginInit();
             SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             // 
             PlaylistFindSongButton.BackColor = SystemColors.ActiveCaptionText;
             PlaylistFindSongButton.ForeColor = SystemColors.ButtonFace;
-            PlaylistFindSongButton.Location = new Point(676, 404);
+            PlaylistFindSongButton.Location = new Point(676, 293);
             PlaylistFindSongButton.Name = "PlaylistFindSongButton";
             PlaylistFindSongButton.Size = new Size(112, 34);
             PlaylistFindSongButton.TabIndex = 8;
@@ -106,9 +107,9 @@
             songsNotInPlaylist.ForeColor = SystemColors.ButtonFace;
             songsNotInPlaylist.FormattingEnabled = true;
             songsNotInPlaylist.ItemHeight = 25;
-            songsNotInPlaylist.Location = new Point(523, 49);
+            songsNotInPlaylist.Location = new Point(490, 49);
             songsNotInPlaylist.Name = "songsNotInPlaylist";
-            songsNotInPlaylist.Size = new Size(265, 129);
+            songsNotInPlaylist.Size = new Size(298, 204);
             songsNotInPlaylist.TabIndex = 14;
             // 
             // songsInPlaylist
@@ -150,7 +151,7 @@
             createPlaylist.ForeColor = SystemColors.ButtonFace;
             createPlaylist.Location = new Point(283, 51);
             createPlaylist.Name = "createPlaylist";
-            createPlaylist.Size = new Size(112, 72);
+            createPlaylist.Size = new Size(93, 72);
             createPlaylist.TabIndex = 19;
             createPlaylist.Text = "Create Playlist";
             createPlaylist.UseVisualStyleBackColor = false;
@@ -160,9 +161,9 @@
             // 
             removePlaylist.BackColor = SystemColors.ActiveCaptionText;
             removePlaylist.ForeColor = SystemColors.ButtonFace;
-            removePlaylist.Location = new Point(401, 51);
+            removePlaylist.Location = new Point(391, 51);
             removePlaylist.Name = "removePlaylist";
-            removePlaylist.Size = new Size(116, 72);
+            removePlaylist.Size = new Size(93, 72);
             removePlaylist.TabIndex = 20;
             removePlaylist.Text = "Remove Playlist";
             removePlaylist.UseVisualStyleBackColor = false;
@@ -173,7 +174,7 @@
             shuffle.AutoSize = true;
             shuffle.BackColor = SystemColors.ActiveCaptionText;
             shuffle.ForeColor = SystemColors.ButtonFace;
-            shuffle.Location = new Point(352, 129);
+            shuffle.Location = new Point(331, 129);
             shuffle.Name = "shuffle";
             shuffle.Size = new Size(93, 29);
             shuffle.TabIndex = 22;
@@ -191,12 +192,25 @@
             changePlaylistName.Text = "Change Playlist Name";
             changePlaylistName.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.ActiveCaptionText;
+            button1.ForeColor = SystemColors.ButtonFace;
+            button1.Location = new Point(676, 404);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 23;
+            button1.Text = "Home";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // PlaylistPage
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(shuffle);
             Controls.Add(removePlaylist);
             Controls.Add(createPlaylist);
@@ -232,5 +246,6 @@
         private CheckBox looping;
         private CheckBox shuffle;
         private Button changePlaylistName;
+        private Button button1;
     }
 }

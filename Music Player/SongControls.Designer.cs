@@ -142,9 +142,9 @@
             checkBox1.ForeColor = SystemColors.ButtonFace;
             checkBox1.Location = new Point(343, 409);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(121, 29);
+            checkBox1.Size = new Size(126, 29);
             checkBox1.TabIndex = 17;
-            checkBox1.Text = "checkBox1";
+            checkBox1.Text = "Loop Song";
             checkBox1.UseVisualStyleBackColor = false;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 

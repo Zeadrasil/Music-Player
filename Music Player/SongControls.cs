@@ -4,6 +4,7 @@ namespace Music_Player
 {
     public partial class SongControls : Form
     {
+        private static bool clickedNext = false;
         private int playlistIndex = -1;
         private Song song;
         private Playlist? playlist;
@@ -30,7 +31,7 @@ namespace Music_Player
         public SongControls(Playlist playlist, int playlistIndex, ref MusicPlayer player)
         {
             InitializeComponent();
-            song = playlist.getSong(playlistIndex);
+            song = playlist.getOrderedSong(playlistIndex);
             this.playlistIndex = playlistIndex;
             this.playlist = playlist;
             this.player = player;
@@ -49,7 +50,7 @@ namespace Music_Player
             }
             else
             {
-                song = playlist.getSong(playlistIndex);
+                song = playlist.getOrderedSong(playlistIndex);
             }
         }
         private void changeForms(Form frm)
@@ -85,9 +86,12 @@ namespace Music_Player
 
         private void previousSongPicBox_Click(object sender, EventArgs e)
         {
+
+            clickedNext = true;
+            Thread.Sleep(100);
             if (playlistIndex == 0)
             {
-                changeForms(new SongControls(playlist, playlist.getLength(), ref player));
+                changeForms(new SongControls(playlist, playlist.getLength() - 1, ref player));
             }
             else
             {
@@ -113,7 +117,7 @@ namespace Music_Player
             {
                 player.getSongPlayer().PlaySong(song);
                 placeInSong.Maximum = player.getSongPlayer().getLength();
-                placeInSong.SmallChange = (int) (placeInSong.Maximum * 0.05f);
+                placeInSong.SmallChange = (int)(placeInSong.Maximum * 0.05f);
                 placeInSong.LargeChange = (int)(placeInSong.Maximum * 0.2f);
                 headTask = new Task(updateHead);
                 headTask.Start();
@@ -127,6 +131,8 @@ namespace Music_Player
             {
                 playlistIndex = -1;
             }
+            clickedNext = true;
+            Thread.Sleep(100);
             changeForms(new SongControls(playlist, playlistIndex + 1, ref player));
         }
 
@@ -152,9 +158,10 @@ namespace Music_Player
             try
             {
                 int bar;
-                while (player.getSongPlayer().getPosition() < player.getSongPlayer().getLength() && player.getSongPlayer().GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && player.getSongPlayer().getPlayingSong() == song)
+                while (!clickedNext && player.getSongPlayer().getPosition() < player.getSongPlayer().getLength() && player.getSongPlayer().GetPlaybackState() == CSCore.SoundOut.PlaybackState.Playing && player.getSongPlayer().getPlayingSong() == song)
                 {
                     slider.TryGetValue(0, out bar);
+                    clickedNext = false;
                     Thread.Sleep(200);
                     if (Math.Abs(player.getSongPlayer().getPosition() - bar) > 300)
                     {
@@ -162,31 +169,34 @@ namespace Music_Player
                     }
                     placeInSong.Invoke(updatePlace, player.getSongPlayer().getPosition());
                 }
-                if (player.getSongPlayer().getPlayingSong() != song)
+                if (!clickedNext)
                 {
-                    Close();
-                }
-                if (player.getSongPlayer().GetPlaybackState() != CSCore.SoundOut.PlaybackState.Paused)
-                {
-                    bool looping;
-                    loop.TryGetValue(0, out looping);
-                    if (looping)
-                    {
-                        placeInSong.Invoke(updatePlace, 0);
-                        player.getSongPlayer().PauseSong();
-                        playSongPicBox_Click(null, null);
-                    }
-                    else if (playlist != null && playlistIndex < playlist.getLength())
-                    {
-                        nextSongPicBox_Click(null, null);
-                    }
-                    else
+                    if (player.getSongPlayer().getPlayingSong() != song)
                     {
                         placeInSong.Invoke(close, 0);
                     }
+                    if (player.getSongPlayer().GetPlaybackState() != CSCore.SoundOut.PlaybackState.Paused)
+                    {
+                        bool looping;
+                        loop.TryGetValue(0, out looping);
+                        if (looping)
+                        {
+                            placeInSong.Invoke(updatePlace, 0);
+                            player.getSongPlayer().PauseSong();
+                            playSongPicBox.Invoke(playSongPicBox_Click, null, null);
+                        }
+                        else if (playlist != null && playlistIndex < playlist.getLength())
+                        {
+                            nextSongPicBox.Invoke(nextSongPicBox_Click, null, null);
+                        }
+                        else
+                        {
+                            placeInSong.Invoke(close, 0);
+                        }
+                    }
                 }
             }
-            catch(ObjectDisposedException)
+            catch (Exception)
             {
 
             }
